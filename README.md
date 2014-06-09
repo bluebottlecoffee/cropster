@@ -1,0 +1,4 @@
+cropster
+========
+
+Cropster Ruby Gem
