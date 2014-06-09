@@ -24,11 +24,11 @@ Cropster Initializer
                   :client_password => ENV['CROPSTER_PASSWORD'],
                   :group_code => ENV['CROPSTER_GROUP_CODE'])
                   
-Green Lots Request
+###Green Lots Request
 
     CropsterClient.green_lots
 
-Green Lots Response
+###Green Lots Response
 
     [{"id"=>632684,
       "idTag"=>"PG-0036",
@@ -45,11 +45,11 @@ Green Lots Response
       "project"=>{"id"=>3293, "name"=>"Iced BC-ICED"},
       "weight"=>{"amount"=>17.086, "unit"=>"BAG69KG"}}]
       
-Roasted Lots Request
+###Roasted Lots Request
     
     CropsterClient.roasts
     
-Roasted Lots Response
+###Roasted Lots Response
     
     [{"id"=>669245,
       "idTag"=>"PR-10237",
@@ -66,7 +66,7 @@ Roasted Lots Response
       "project"=>nil,
       "weight"=>{"amount"=>48.0, "unit"=>"LBS"}}]
       
-Example Optional Params
+###Example Optional Params
     {page: 1, perPage: 200, locationId: 55789}
 *perPage max is 200
 
