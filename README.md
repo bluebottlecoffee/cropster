@@ -14,16 +14,17 @@ And then execute:
 Or install it yourself as:
 
     $ gem install cropster
-
-## Usage
-
-Cropster Initializer
+    
+Setup Initializer
 
     CropsterClient = Cropster::Client.new(
                   :client_username => ENV['CROPSTER_USERNAME'], 
                   :client_password => ENV['CROPSTER_PASSWORD'],
                   :group_code => ENV['CROPSTER_GROUP_CODE'])
                   
+
+## Usage
+
 ###Green Lots Request
 
     CropsterClient.green_lots
@@ -67,7 +68,7 @@ Cropster Initializer
       "weight"=>{"amount"=>48.0, "unit"=>"LBS"}}]
       
 ###Example Optional Params
-    {page: 1, perPage: 200, locationId: 55789}
+    CropsterClient.green_lots({page: 1, perPage: 200, locationId: 55789})
 *perPage max is 200
 
 ## Contributing
