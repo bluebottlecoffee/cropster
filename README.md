@@ -1,11 +1,5 @@
-=======
-cropster
-========
-
-Cropster Ruby Gem
 # Cropster
-
-TODO: Write a gem description
+Cropster ruby gem. Make API calls to cropster to pull green and roasted coffee data.
 
 ## Installation
 
@@ -23,7 +17,58 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Cropster Initializer
+
+    CropsterClient = Cropster::Client.new(
+                  :client_username => ENV['CROPSTER_USERNAME'], 
+                  :client_password => ENV['CROPSTER_PASSWORD'],
+                  :group_code => ENV['CROPSTER_GROUP_CODE'])
+                  
+Green Lots Request
+
+    CropsterClient.green_lots
+
+Green Lots Response
+
+    [{"id"=>632684,
+      "idTag"=>"PG-0036",
+      "name"=>"Ethiopia ORG Sidamo Suke Quto",
+      "location"=>{"id"=>55789, "name"=>"Some Location"},
+      "creationDate"=>1399379937000,
+      "project"=>{"id"=>3076, "name"=>"Ethiopian Washed Blender BC-WETH"},
+      "weight"=>{"amount"=>7.141, "unit"=>"BAG60KG"}},
+     {"id"=>630173,
+      "idTag"=>"PG-0064",
+      "name"=>"Peru ORG Perene River",
+      "location"=>{"id"=>55789, "name"=>"Some Location"},
+      "creationDate"=>1399306071000,
+      "project"=>{"id"=>3293, "name"=>"Iced BC-ICED"},
+      "weight"=>{"amount"=>17.086, "unit"=>"BAG69KG"}}]
+      
+Roasted Lots Request
+    
+    CropsterClient.roasts
+    
+Roasted Lots Response
+    
+    [{"id"=>669245,
+      "idTag"=>"PR-10237",
+      "name"=>"Costa Rica Vista el Valle Zapote",
+      "location"=>{"id"=>55789, "name"=>"Some Location"},
+      "creationDate"=>1401121036000,
+      "project"=>{"id"=>3289, "name"=>"Costa Rica SO"},
+      "weight"=>{"amount"=>30.0, "unit"=>"LBS"}},
+     {"id"=>669220,
+      "idTag"=>"PR-10236",
+      "name"=>"Retrofit IV NYC",
+      "location"=>{"id"=>55789, "name"=>"Some Location"},
+      "creationDate"=>1401120213000,
+      "project"=>nil,
+      "weight"=>{"amount"=>48.0, "unit"=>"LBS"}}]
+      
+Example Optional Params
+    {page: 1, perPage: 200, locationId: 55789}
+*perPage max is 200
 
 ## Contributing
 
