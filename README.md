@@ -1,3 +1,8 @@
+=======
+cropster
+========
+
+Cropster Ruby Gem
 # Cropster
 
 TODO: Write a gem description
