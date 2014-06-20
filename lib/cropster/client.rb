@@ -1,43 +1,50 @@
 require 'typhoeus'
 
+require 'cropster/response/response_handler'
+
 module Cropster
   class Client
-    ENDPOINT = 'https://c-sar.cropster.com/api/rest/v1'
 
     attr_reader :client_username, :client_password, :group_code
 
     def initialize opts = {}
+      @test_mode       = opts[:test_mode].present?
+      @api_path        = opts[:api_path].presence || '/api/rest/v1'
       @client_username = opts[:client_username]
       @client_password = opts[:client_password]
       @group_code      = opts[:group_code]
     end
 
     def base_url(opts)
-      "#{ENDPOINT}/lot?groupCode=#{@group_code}&#{uri_options(opts)}"
-    end
-
-    def username_password
-      "#{@client_username}:#{@client_password}"
+      "#{host}#{@api_path}/lot?groupCode=#{@group_code}&#{uri_options(opts)}"
     end
 
     def green_lots(opts={})
       response = request(base_url(opts.merge({processingStep: 'coffee.green'})))
       raise "There was a problem, code: #{response.code}" unless response.code == 200
-      JSON.parse(response.body)
+      Cropster::Response::ResponseHandler.new.green_lots(JSON.parse(response.body))
     end
 
-    def roasts(opts={})
+    def host
+      @test_mode ? 'https://test.cropster.com' : 'https://c-sar.cropster.com'
+    end
+
+    def request(url)
+      Typhoeus::Request.get(url, userpwd: username_password)
+    end
+
+    def roast_batches(opts={})
       response = request(base_url(opts.merge({processingStep: 'coffee.roasting'})))
       raise "There was a problem, code: #{response.code}" unless response.code == 200
-      JSON.parse(response.body)
+      Cropster::Response::ResponseHandler.new.roast_batches(JSON.parse(response.body))
     end
 
     def uri_options(opts)
       URI.encode(opts.map{|k,v| "#{k}=#{v}"}.join("&"))
     end
 
-    def request(url)
-      Typhoeus::Request.get(url, userpwd: username_password)
+    def username_password
+      "#{@client_username}:#{@client_password}"
     end
   end
 end
