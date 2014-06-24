@@ -60,6 +60,10 @@ module Cropster::Response
       end
     end
 
+    def package_weight_grams
+      amount > 0 ? (grams / amount.to_f) : 0
+    end
+
   end
 
 end
