@@ -15,8 +15,10 @@ module Cropster::Response
     end
 
     def grams
-      if unit_of_measure == 'LBS'
-        total_amount.to_f * 453.592
+      if unit_of_measure == 'QUINTAL'
+        total_amount.to_f * 46000
+      elsif unit_of_measure == 'LBS'
+        total_amount.to_f * 453.59237
       elsif unit_of_measure == 'KG'
         total_amount.to_f * 1000
       else 
@@ -25,13 +27,7 @@ module Cropster::Response
     end
 
     def pounds
-      if unit_of_measure == 'LBS'
-        total_amount
-      elsif unit_of_measure == 'KG'
-        total_amount.to_f * 2.20462
-      else 
-        raise "unknown unit conversion #{unit_of_measure}"
-      end
+      grams / 453.59237
     end
 
     def total_amount
@@ -43,6 +39,8 @@ module Cropster::Response
         'LBS'
       elsif @unit.include?('KG')
         'KG'
+      elsif @unit.include?('QUINTAL')
+        'QUINTAL'
       else
         raise "unknown units in #{@unit}"
       end
