@@ -1,5 +1,4 @@
 require 'typhoeus'
-
 require 'cropster/response/response_handler'
 
 module Cropster
@@ -21,7 +20,7 @@ module Cropster
 
     def green_lots(opts={})
       response = request(base_url(opts.merge({processingStep: 'coffee.green'})))
-      raise "There was a problem, code: #{response.code}" unless response.code == 200
+      raise ServiceUnavailableError unless response.code == 200
       Cropster::Response::ResponseHandler.new.green_lots(JSON.parse(response.body))
     end
 
@@ -35,7 +34,7 @@ module Cropster
 
     def roast_batches(opts={})
       response = request(base_url(opts.merge({processingStep: 'coffee.roasting'})))
-      raise "There was a problem, code: #{response.code}" unless response.code == 200
+      raise ServiceUnavailableError unless response.code == 200
       Cropster::Response::ResponseHandler.new.roast_batches(JSON.parse(response.body))
     end
 

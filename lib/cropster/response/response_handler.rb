@@ -5,10 +5,10 @@ module Cropster::Response
     require 'cropster/response/roast_batch'
 
     attr_accessor :data_set
-    attr_accessor :compliled_data
+    attr_accessor :compiled_data
 
     def initialize
-      @compliled_data = []
+      @compiled_data = []
     end
 
     def green_lots(data_set)
@@ -25,10 +25,10 @@ module Cropster::Response
       model = Object.const_get("Cropster::Response::" + model)
 
       data_set.each do |data|
-        @compliled_data << model.new(data) if !data.empty?
+        @compiled_data << model.new(data) if !data.empty?
       end
 
-      @compliled_data
+      @compiled_data
     end
   end
 
