@@ -4,6 +4,7 @@ require 'cropster/response/response_handler'
 module Cropster
   class Client
     attr_reader :client_username, :client_password, :group_code
+    ServiceUnavailableError = Class.new(StandardError)
 
     def initialize opts = {}
       @test_mode       = opts[:test_mode].present?
