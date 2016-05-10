@@ -3,7 +3,6 @@ require 'cropster/response/response_handler'
 
 module Cropster
   class Client
-
     attr_reader :client_username, :client_password, :group_code
 
     def initialize opts = {}
