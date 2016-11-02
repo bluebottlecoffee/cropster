@@ -14,28 +14,26 @@ module Cropster
       @group_code      = opts[:group_code]
     end
 
-    def base_url(opts)
-      "#{host}#{@api_path}/lot?groupCode=#{@group_code}&#{uri_options(opts)}"
-    end
-
     def green_lots(opts={})
-      response = request(base_url(opts.merge({processingStep: 'coffee.green'})))
-      raise ServiceUnavailableError unless response.code == 200
-      Cropster::Response::ResponseHandler.new.green_lots(JSON.parse(response.body))
-    end
-
-    def host
-      @test_mode ? 'https://test.cropster.com' : 'https://c-sar.cropster.com'
-    end
-
-    def request(url)
-      Typhoeus::Request.get(url, userpwd: username_password)
+      options = opts.merge({processingStep: 'coffee.green'})
+      Cropster::Response::ResponseHandler.new.green_lots( get('lot', options) )
     end
 
     def roast_batches(opts={})
-      response = request(base_url(opts.merge({processingStep: 'coffee.roasting'})))
+      options = opts.merge({processingStep:'coffee.roasting'})
+      Cropster::Response::ResponseHandler.new.roast_batches( get('lot', options) )
+    end
+
+    def get(path, opts={})
+      url = "#{host}#{@api_path}/#{path}?#{uri_options( opts.merge('groupCode' => @group_code) )}"
+      response = Typhoeus::Request.get(url, userpwd: username_password)
       raise ServiceUnavailableError unless response.code == 200
-      Cropster::Response::ResponseHandler.new.roast_batches(JSON.parse(response.body))
+      JSON.parse(response.body)
+    end
+
+    private
+    def host
+      @test_mode ? 'https://test.cropster.com' : 'https://c-sar.cropster.com'
     end
 
     def uri_options(opts)
