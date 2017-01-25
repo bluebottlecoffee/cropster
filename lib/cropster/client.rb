@@ -22,7 +22,7 @@ module Cropster
     def green_lots(opts={})
       response = request(base_url(opts.merge({processingStep: 'coffee.green'})))
       raise ServiceUnavailableError unless response.code == 200
-      Cropster::Response::ResponseHandler.new.green_lots(JSON.parse(response.body))
+      JSON.parse(response.body).map { |gl| Response::GreenLot.new(gl) }
     end
 
     def host
@@ -36,7 +36,7 @@ module Cropster
     def roast_batches(opts={})
       response = request(base_url(opts.merge({processingStep: 'coffee.roasting'})))
       raise ServiceUnavailableError unless response.code == 200
-      Cropster::Response::ResponseHandler.new.roast_batches(JSON.parse(response.body))
+      JSON.parse(response.body).map { |gl| Response::RoastBatch.new(gl) }
     end
 
     def uri_options(opts)
