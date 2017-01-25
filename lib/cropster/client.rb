@@ -1,6 +1,4 @@
-require 'json'
-require 'typhoeus'
-require 'cropster/response/response_handler'
+require "cgi"
 
 module Cropster
   class Client
@@ -40,7 +38,7 @@ module Cropster
     end
 
     def uri_options(opts)
-      URI.encode(opts.map{|k,v| "#{k}=#{v}"}.join("&"))
+      CGI.escape(opts.map{|k,v| "#{k}=#{v}"}.join("&"))
     end
 
     def username_password

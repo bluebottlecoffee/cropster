@@ -1,5 +1,4 @@
-require './lib/cropster/response/location'
-require "minitest/autorun"
+require "test_helper"
 
 class LocationTest < Minitest::Test
   def test_initialize_with_attributes_hash
