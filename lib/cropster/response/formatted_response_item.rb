@@ -1,5 +1,4 @@
 module Cropster::Response
-
   class FormattedResponseItem
     require 'cropster/response/location'
     require 'cropster/response/weight'
@@ -38,20 +37,22 @@ module Cropster::Response
     end
 
     def load_from_data(data)
-      @id             = data['id'].present? ? data['id'].to_i : 0
+      @id             = data.fetch('id', 0).to_i
       @id_tag         = data['idTag']
       @name           = data['name']
-      @created_at     = data['creationDate'].present? ? Time.at(data['creationDate'].to_i / 1000).utc : nil
-      @location       = Cropster::Response::Location.new(data['location'])    if data['location'].present?
-      @weight         = Cropster::Response::Weight.new(data['weight'])        if data['weight'].present?
-      @initial_weight = Cropster::Response::Weight.new(data['initialWeight']) if data['initialWeight'].present?
-      @project        = Cropster::Response::Project.new(data['project'])      if data['project'].present?
+
+      if data.has_key?('creationDate')
+        @created_at = Time.at(data['creationDate'].to_i / 1000).utc
+      end
+
+      @location = Cropster::Response::Location.new(data['location'])
+      @weight = Cropster::Response::Weight.new(data['weight'])
+      @initial_weight = Cropster::Response::Weight.new(data['initialWeight'])
+      @project = Cropster::Response::Project.new(data['project'])
       @certifications = data['certifications']
 
-      if data['sources'].present? && !data['sources'].empty?
-        data['sources'].each do |source_data| 
-          @sources << Cropster::Response::Source.new(source_data)
-        end
+      data.fetch('sources', []).each do |source_data|
+        @sources << Cropster::Response::Source.new(source_data)
       end
     end
 
@@ -60,17 +61,18 @@ module Cropster::Response
     end
 
     def name_raw_ico_component
-      @name.gsub(/[?a-z,A-Z]/, '').split(' ').last.presence || ""
+      @name.gsub(/[?a-z,A-Z]/, '').split(' ').last || ""
     end
 
     def name_sans_ico
-      n = ico.present? ? name.gsub("[#{name_raw_ico_component}]",'').gsub(name_raw_ico_component, '') : name
-      n.gsub('Organic', '').gsub('ORGANIC','')
+      name.
+        gsub("[#{name_raw_ico_component}]",'').
+        gsub(name_raw_ico_component, '').
+        gsub(/organic/i, '')
     end
 
     def organic?
       @certifications.join(' ').downcase.include?('organic')
     end
   end
-
 end

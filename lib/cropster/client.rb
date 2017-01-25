@@ -1,3 +1,4 @@
+require 'json'
 require 'typhoeus'
 require 'cropster/response/response_handler'
 
@@ -7,8 +8,8 @@ module Cropster
     ServiceUnavailableError = Class.new(StandardError)
 
     def initialize opts = {}
-      @test_mode       = opts[:test_mode].present?
-      @api_path        = opts[:api_path].presence || '/api/rest/v1'
+      @test_mode       = !opts[:test_mode].nil?
+      @api_path        = opts.fetch(:api_path, '/api/rest/v1')
       @client_username = opts[:client_username]
       @client_password = opts[:client_password]
       @group_code      = opts[:group_code]

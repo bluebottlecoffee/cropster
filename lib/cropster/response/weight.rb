@@ -1,12 +1,10 @@
 module Cropster::Response
-
   class Weight
-    
-    attr_accessor :amount, 
+    attr_accessor :amount,
                   :unit
 
     def initialize(data)
-      load_from_data(data)
+      load_from_data(data || {})
     end
 
     def load_from_data(data)
