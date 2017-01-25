@@ -20,24 +20,6 @@ module Cropster
       def initialize(data)
         @sources = []
         @certifications = []
-        load_from_data(data)
-      end
-
-      def fairtrade?
-        @certifications.join(' ').downcase.include?('fairtrade')
-      end
-
-      def ico
-        if @name.include?('[') && @name.include?(']')
-          @name.gsub(/^(.+?)\[/, '').gsub(/[.+?\]]*/, '')
-        elsif name_ico_separators.size >= 2
-          name_raw_ico_component.gsub('/','-').gsub('--','-')
-        else
-          ''
-        end
-      end
-
-      def load_from_data(data)
         @id             = data.fetch('id', 0).to_i
         @id_tag         = data['idTag']
         @name           = data['name']
@@ -54,6 +36,20 @@ module Cropster
 
         data.fetch('sources', []).each do |source_data|
           @sources << Cropster::Response::Source.new(source_data)
+        end
+      end
+
+      def fairtrade?
+        @certifications.join(' ').downcase.include?('fairtrade')
+      end
+
+      def ico
+        if @name.include?('[') && @name.include?(']')
+          @name.gsub(/^(.+?)\[/, '').gsub(/[.+?\]]*/, '')
+        elsif name_ico_separators.size >= 2
+          name_raw_ico_component.gsub('/','-').gsub('--','-')
+        else
+          ''
         end
       end
 

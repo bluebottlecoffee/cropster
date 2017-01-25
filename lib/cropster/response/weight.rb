@@ -1,16 +1,16 @@
 module Cropster
   module Response
     class Weight
-      attr_accessor :amount,
-                    :unit
-
       def initialize(data)
-        load_from_data(data || {})
+        @data = data || {}
       end
 
-      def load_from_data(data)
-        @amount = data['amount'] || 0
-        @unit   = data['unit'] || ""
+      def amount
+        data.fetch('amount', 0)
+      end
+
+      def unit
+        data.fetch('unit', '')
       end
 
       def grams

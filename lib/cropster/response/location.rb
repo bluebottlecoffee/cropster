@@ -1,16 +1,16 @@
 module Cropster
   module Response
     class Location
-      attr_accessor :id,
-                    :name
-
       def initialize(data)
-        load_from_data(data || {})
+        @data = data || {}
       end
 
-      def load_from_data(data)
-        @id   = data['id'].to_i
-        @name = data['name']
+      def id
+        @data['id'].to_i
+      end
+
+      def name
+        @data['name']
       end
     end
   end
