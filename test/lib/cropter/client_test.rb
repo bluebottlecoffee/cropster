@@ -23,5 +23,15 @@ class ClientTest < Minitest::Test
       assert_equal batches.count, 1
       assert_equal batches.first.name, "Good Stuff [12-24]"
     end
+    @mock_response.verify
+  end
+
+  def test_unauthorized_request
+    response = Struct.new(:code).new(401)
+    Typhoeus::Request.stub(:get, response) do
+      Cropster::Client.new.roast_batches
+    end
+  rescue Cropster::Client::ServiceUnavailableError => e
+    assert_equal e.message, "401"
   end
 end
