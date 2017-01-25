@@ -1,3 +1,5 @@
+require "json"
+require "typhoeus"
 require "cgi"
 
 module Cropster

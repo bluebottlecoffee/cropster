@@ -1,5 +1,3 @@
-require "json"
-require "typhoeus"
 require "cropster/version"
 require "cropster/client"
 require "cropster/response/formatted_response_item"
