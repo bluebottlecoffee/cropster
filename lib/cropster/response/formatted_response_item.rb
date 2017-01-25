@@ -1,11 +1,6 @@
 module Cropster
   module Response
     class FormattedResponseItem
-      require 'cropster/response/location'
-      require 'cropster/response/weight'
-      require 'cropster/response/project'
-      require 'cropster/response/source'
-
       attr_accessor :id,
                     :id_tag,
                     :name,
