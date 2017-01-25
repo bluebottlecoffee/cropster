@@ -14,4 +14,14 @@ class ClientTest < Minitest::Test
       assert_equal lots.first.name, "Good Stuff [12-23]"
     end
   end
+
+  def test_roast_batches
+    @mock_response.expect(:code, 200)
+    @mock_response.expect(:body, File.read('./test/fixtures/roast_batches.json'))
+    Typhoeus::Request.stub(:get, @mock_response) do
+      batches = Cropster::Client.new.roast_batches
+      assert_equal batches.count, 1
+      assert_equal batches.first.name, "Good Stuff [12-24]"
+    end
+  end
 end
