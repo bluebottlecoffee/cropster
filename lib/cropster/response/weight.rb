@@ -1,52 +1,56 @@
+require 'bigdecimal'
+
 module Cropster
   module Response
     class Weight
+      DEFAULT_CONVERSIONS = {
+        'QUINTAL' => 46000,
+        'LBS'     => 453.52937,
+        'KG'      => 1000
+      }
+
       def initialize(data)
         @data = data || {}
       end
 
       def amount
-        data.fetch('amount', 0)
+        BigDecimal.new(@data.fetch('amount', 0), 16)
       end
 
       def unit
-        data.fetch('unit', '')
+        @data.fetch('unit', '')
       end
 
       def grams
-        if unit_of_measure == 'QUINTAL'
-          total_amount.to_f * 46000
-        elsif unit_of_measure == 'LBS'
-          total_amount.to_f * 453.59237
-        elsif unit_of_measure == 'KG'
-          total_amount.to_f * 1000
-        else 
+        conversion_factor = DEFAULT_CONVERSIONS.fetch(unit_of_measure) do
           raise "unknown unit conversion #{unit_of_measure}"
         end
+
+        total_amount * conversion_factor
       end
 
       def pounds
-        grams / 453.59237
+        grams / DEFAULT_CONVERSIONS.fetch('LBS')
       end
 
       def total_amount
-        unit_value == 0 ? amount : (amount.to_f * unit_value.to_f)
-      end
-
-      def unit_of_measure
-        if @unit.include?('LBS')
-          'LBS'
-        elsif @unit.include?('KG')
-          'KG'
-        elsif @unit.include?('QUINTAL')
-          'QUINTAL'
+        if unit_value.zero?
+          amount
         else
-          raise "unknown units in #{@unit}"
+          amount * unit_value
         end
       end
 
-      def unit_value
-        @unit.gsub(/[^0-9]/, '').to_i 
+      def unit_of_measure
+        if unit.include?('LBS')
+          'LBS'
+        elsif unit.include?('KG')
+          'KG'
+        elsif unit.include?('QUINTAL')
+          'QUINTAL'
+        else
+          raise "unknown units in #{unit}"
+        end
       end
 
       def unit_type
@@ -58,7 +62,17 @@ module Cropster
       end
 
       def package_weight_grams
-        amount > 0 ? (grams / amount.to_f) : 0
+        if amount > 0
+          grams / amount
+        else
+          0
+        end
+      end
+
+      private
+
+      def unit_value
+        unit.gsub(/[^0-9]/, '').to_i
       end
     end
   end
