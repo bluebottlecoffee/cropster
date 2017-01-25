@@ -15,28 +15,30 @@ module Cropster
       @group_code      = opts[:group_code]
     end
 
-    def base_url(opts)
-      "#{host}#{@api_path}/lot?groupCode=#{@group_code}&#{uri_options(opts)}"
-    end
-
     def green_lots(opts={})
       response = request(base_url(opts.merge({processingStep: 'coffee.green'})))
       vet_response(response)
       JSON.parse(response.body).map { |gl| Response::GreenLot.new(gl) }
     end
 
-    def host
-      @test_mode ? 'https://test.cropster.com' : 'https://c-sar.cropster.com'
+    def roast_batches(opts={})
+      response = request(base_url(opts.merge({processingStep: 'coffee.roasting'})))
+      vet_response(response)
+      JSON.parse(response.body).map { |gl| Response::RoastBatch.new(gl) }
     end
+
+    private
 
     def request(url)
       Typhoeus::Request.get(url, userpwd: username_password)
     end
 
-    def roast_batches(opts={})
-      response = request(base_url(opts.merge({processingStep: 'coffee.roasting'})))
-      vet_response(response)
-      JSON.parse(response.body).map { |gl| Response::RoastBatch.new(gl) }
+    def base_url(opts)
+      "#{host}#{@api_path}/lot?groupCode=#{@group_code}&#{uri_options(opts)}"
+    end
+
+    def host
+      @test_mode ? 'https://test.cropster.com' : 'https://c-sar.cropster.com'
     end
 
     def uri_options(opts)
@@ -46,8 +48,6 @@ module Cropster
     def username_password
       "#{@client_username}:#{@client_password}"
     end
-
-    private
 
     def vet_response(response)
       raise ServiceUnavailableError, response.code unless response.code == 200
