@@ -34,4 +34,22 @@ class ClientTest < Minitest::Test
   rescue Cropster::Client::ServiceUnavailableError => e
     assert_equal e.message, "401"
   end
+
+  def test_username_from_env
+    ENV['CROPSTER_USERNAME'] = 'greggroth'
+    assert_equal 'greggroth', Cropster::Client.new.client_username
+    ENV.delete('CROPSTER_USERNAME')
+  end
+
+  def test_password_from_env
+    ENV['CROPSTER_PASSWORD'] = 'pa5word'
+    assert_equal 'pa5word', Cropster::Client.new.client_password
+    ENV.delete('CROPSTER_PASSWORD')
+  end
+
+  def test_group_code_from_env
+    ENV['CROPSTER_GROUP_CODE'] = '123'
+    assert_equal '123', Cropster::Client.new.group_code
+    ENV.delete('CROPSTER_GROUP_CODE')
+  end
 end

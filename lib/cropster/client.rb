@@ -10,9 +10,9 @@ module Cropster
     def initialize(opts = {})
       @test_mode       = !opts[:test_mode].nil?
       @api_path        = opts.fetch(:api_path, '/api/rest/v1')
-      @client_username = opts[:client_username]
-      @client_password = opts[:client_password]
-      @group_code      = opts[:group_code]
+      @client_username = opts.fetch(:client_username, ENV['CROPSTER_USERNAME'])
+      @client_password = opts.fetch(:client_password, ENV['CROPSTER_PASSWORD'])
+      @group_code      = opts.fetch(:group_code, ENV['CROPSTER_GROUP_CODE'])
     end
 
     def green_lots(opts={})

@@ -14,20 +14,22 @@ And then execute:
 Or install it yourself as:
 
     $ gem install cropster
-    
-Setup Initializer
 
-    CropsterClient = Cropster::Client.new(
-                  :client_username => ENV['CROPSTER_USERNAME'], 
-                  :client_password => ENV['CROPSTER_PASSWORD'],
-                  :group_code => ENV['CROPSTER_GROUP_CODE'])
-                  
+Setup API client using explicit credentials
+
+    client = Cropster::Client.new(client_username: 'foo', client_password: 'bar', group_code: '123')
+
+or, by setting the following environment variables:
+
+  - `CROPSTER_USERNAME`
+  - `CROPSTER_PASSWORD`
+  - `CROPSTER_GROUP_CODE`
 
 ## Usage
 
 ###Green Lots Request
 
-    CropsterClient.green_lots
+    client.green_lots
 
 ###Green Lots Response
 
@@ -45,13 +47,13 @@ Setup Initializer
       "creationDate"=>1399306071000,
       "project"=>{"id"=>3293, "name"=>"Iced BC-ICED"},
       "weight"=>{"amount"=>17.086, "unit"=>"BAG69KG"}}]
-      
+
 ###Roasted Lots Request
-    
-    CropsterClient.roasts
-    
+
+    client.roasts
+
 ###Roasted Lots Response
-    
+
     [{"id"=>669245,
       "idTag"=>"PR-10237",
       "name"=>"Costa Rica Vista el Valle Zapote",
@@ -66,9 +68,9 @@ Setup Initializer
       "creationDate"=>1401120213000,
       "project"=>nil,
       "weight"=>{"amount"=>48.0, "unit"=>"LBS"}}]
-      
+
 ###Example Optional Params
-    CropsterClient.green_lots({page: 1, perPage: 200, locationId: 55789})
+    client.green_lots({page: 1, perPage: 200, locationId: 55789})
 *perPage max is 200
 
 ## Contributing
