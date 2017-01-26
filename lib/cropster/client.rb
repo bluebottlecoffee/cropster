@@ -7,7 +7,7 @@ module Cropster
     attr_reader :client_username, :client_password, :group_code
     ServiceUnavailableError = Class.new(StandardError)
 
-    def initialize opts = {}
+    def initialize(opts = {})
       @test_mode       = !opts[:test_mode].nil?
       @api_path        = opts.fetch(:api_path, '/api/rest/v1')
       @client_username = opts[:client_username]

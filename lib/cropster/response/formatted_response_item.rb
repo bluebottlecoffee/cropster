@@ -39,32 +39,35 @@ module Cropster
       end
 
       def ico
-        if @name.include?('[') && @name.include?(']')
-          @name.gsub(/^(.+?)\[/, '').gsub(/[.+?\]]*/, '')
-        elsif name_ico_separators.size >= 2
-          name_raw_ico_component.gsub('/','-').gsub('--','-')
-        else
-          ''
+        if m = name.match(ico_regex)
+          m[1]
         end
       end
 
-      def name_ico_separators
-        @name.gsub(/[?a-zA-Z0-9 ]/, '')
-      end
-
-      def name_raw_ico_component
-        @name.gsub(/[?a-z,A-Z]/, '').split(' ').last || ""
-      end
-
       def name_sans_ico
-        name.
-          gsub("[#{name_raw_ico_component}]",'').
-          gsub(name_raw_ico_component, '').
-          gsub(/organic/i, '')
+        if ico
+          name.gsub(/#{ico_start}.*\z/, '').strip
+        else
+          name
+        end
       end
 
       def organic?
         @certifications.join(' ').downcase.include?('organic')
+      end
+
+      private
+
+      def ico_regex
+        /#{ico_start}([^#{ico_stop}]*)#{ico_stop}/
+      end
+
+      def ico_start
+        Regexp.escape(Configuration.name_ico_separators[0])
+      end
+
+      def ico_stop
+        Regexp.escape(Configuration.name_ico_separators[1])
       end
     end
   end
