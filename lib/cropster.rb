@@ -1,5 +1,6 @@
 require "cropster/version"
 require "cropster/client"
+require 'cropster/constants'
 
 require 'cropster/response/response_handler'
 require 'cropster/response/formatted_response_item'

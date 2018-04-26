@@ -3,14 +3,14 @@ require 'json'
 
 module Cropster
   class Client
-    attr_reader :client_username, :client_password, :group_code
+    attr_reader :api_key, :api_secret, :group_code
     ServiceUnavailableError = Class.new(StandardError)
 
     def initialize(opts = {})
       @test_mode       = opts[:test_mode] == true
-      @api_path        = opts[:api_path] ||= '/api/v2'
+      @api_path        = opts[:api_path] ||= Cropster::API_PATH
       @api_key         = opts[:api_key]
-      @client_password = opts[:api_secret]
+      @api_secret      = opts[:api_secret]
       @group_code      = opts[:group_code]
     end
 
@@ -25,7 +25,7 @@ module Cropster
     end
 
     def host
-      @test_mode ? 'https://private-anon-e2e6946d27-cropstercore.apiary-mock.com' : 'https://c-sar.cropster.com'
+      @test_mode ?  Cropster::SERVER_TEST : Cropster::SERVER_PRODUCTION
     end
 
     def request(url)
