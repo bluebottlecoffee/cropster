@@ -1,8 +1,6 @@
 module Cropster::Response
 
   class Source
-    require 'cropster/response/green_lot'
-    require 'cropster/response/weight'
 
     attr_accessor :date, 
                   :lot,

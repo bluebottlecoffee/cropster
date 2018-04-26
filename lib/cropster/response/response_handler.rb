@@ -1,8 +1,6 @@
 module Cropster::Response
 
   class ResponseHandler
-    require 'cropster/response/green_lot'
-    require 'cropster/response/roast_batch'
 
     attr_accessor :data_set
     attr_accessor :compiled_data
