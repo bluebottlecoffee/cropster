@@ -1,6 +1,7 @@
 require 'typhoeus'
 require 'json'
 
+require "cropster/hash"
 require "cropster/version"
 require "cropster/client"
 require 'cropster/constants'
@@ -14,3 +15,5 @@ require 'cropster/response/project'
 require 'cropster/response/source'
 require 'cropster/response/green_lot'
 require 'cropster/response/roast_batch'
+
+ServiceUnavailableError = Class.new(StandardError)
