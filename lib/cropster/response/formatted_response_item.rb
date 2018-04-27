@@ -47,13 +47,8 @@ module Cropster::Response
       @id = data[:id]
       @type = data[:type]
       load_attributes(data[:attributes])
-      # @certifications = data[:certifications]
-
-      # if data['sources'].present? && !data['sources'].empty?
-      #   data['sources'].each do |source_data|
-      #     @sources << Cropster::Response::Source.new(source_data)
-      #   end
-      # end
+      load_location(data[:relationships][:location])
+      load_project(data[:relationships][:project])
     end
 
     def load_attributes(attributes)
@@ -71,10 +66,28 @@ module Cropster::Response
       @weight = load_weight(attributes[:actualWeight])
       @initial_weight = load_weight(attributes[:initialWeight])
       @price = load_price(attributes[:price], attributes[:priceBaseUnit])
-      @location =
-        Cropster::Response::Location.new(attributes[:location]) if attributes.has_key?(:location)
-      @project =
-        Cropster::Response::Project.new(attributes[:project])      if attributes.has_key?(:project)
+    end
+
+    def load_location(data)
+      return if data[:data].nil?
+      @location = Cropster::Response::Location.new(data[:data])
+    end
+
+    def load_project(data)
+      return if data[:data].nil?
+      @project = Cropster::Response::Project.new(data[:data])
+    end
+
+    def load_certificates(data)
+      return if data[:data].nil?
+      # @certifications = data[:certifications]
+    end
+
+    def load_sources(data)
+      return if data.empty?
+      data.each do |source_data|
+        @sources << Cropster::Response::Source.new(source_data)
+      end
     end
 
     def load_date(date)
