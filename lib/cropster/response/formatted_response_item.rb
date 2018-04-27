@@ -11,6 +11,7 @@ module Cropster::Response
                   :location,
                   :sources,
                   :weight,
+                  :price,
                   :project,
                   :initial_weight,
                   :tracking_number,
@@ -69,6 +70,7 @@ module Cropster::Response
       @consumed_at = load_date(attributes[:consumedDate])
       @weight = load_weight(attributes[:actualWeight])
       @initial_weight = load_weight(attributes[:initialWeight])
+      @price = load_price(attributes[:price], attributes[:priceBaseUnit])
       @location =
         Cropster::Response::Location.new(attributes[:location]) if attributes.has_key?(:location)
       @project =
@@ -78,6 +80,10 @@ module Cropster::Response
     def load_date(date)
       return nil if date.nil?
       Time.at(date.to_i / 1000).utc
+    end
+
+    def load_price(data, base_data)
+      Cropster::Response::Price.new(data, base_data)
     end
 
     def load_weight(attributes)

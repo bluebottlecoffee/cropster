@@ -19,6 +19,9 @@ class Cropster::Response::FormattedResponseItemTest < Test::Unit::TestCase
     assert_equal "PO-1234", item.purchase_order_number
     assert_equal "KP923874", item.tracking_number
     assert_match(/Ethiopia/, item.name)
+    assert_equal 4, item.price.amount
+    assert_equal "LBS", item.price.base_unit
+    assert_equal "USD", item.price.currency
   end
 
   def valid_response
