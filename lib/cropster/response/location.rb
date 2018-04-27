@@ -1,9 +1,6 @@
 module Cropster::Response
-
   class Location
-    
-    attr_accessor :id, 
-                  :name
+    attr_accessor :id, :name
 
     def initialize(data)
       load_from_data(data)
@@ -14,5 +11,4 @@ module Cropster::Response
       @name = data['name']
     end
   end
-
 end

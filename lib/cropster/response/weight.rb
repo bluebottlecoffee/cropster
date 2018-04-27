@@ -1,17 +1,18 @@
+##
+# Converts a hash containing Weight information from Cropster into a Weight
+# object, and performs unit conversions where necessary.
+#
 module Cropster::Response
-
   class Weight
-    
-    attr_accessor :amount, 
-                  :unit
+    attr_accessor :amount, :unit
 
     def initialize(data)
       load_from_data(data)
     end
 
     def load_from_data(data)
-      @amount = data['amount'] || 0
-      @unit   = data['unit'] || ""
+      @amount = data[:amount] ||= 0
+      @unit   = data[:unit] ||= ""
     end
 
     def grams

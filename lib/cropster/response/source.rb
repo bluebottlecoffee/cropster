@@ -1,10 +1,7 @@
 module Cropster::Response
-
   class Source
 
-    attr_accessor :date, 
-                  :lot,
-                  :weight
+    attr_accessor :date, :lot, :weight
 
     def initialize(data)
       load_from_data(data)

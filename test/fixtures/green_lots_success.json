@@ -1,0 +1,129 @@
+HTTP/1.1 200 OK
+server: Cowboy
+x-apiary-ratelimit-limit: 120
+x-apiary-ratelimit-remaining: 119
+content-type: application/vnd.api+json;charset=UTF-8
+access-control-allow-origin: *
+access-control-allow-methods: OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT
+access-control-max-age: 10
+x-apiary-transaction-id: 5ae1852c807d360a0002517c
+content-length: 3579
+date: Thu, 26 Apr 2018 07:52:12 GMT
+
+{
+  "data": [
+    {
+      "type": "lots",
+      "id": "AA",
+      "attributes": {
+        "isSample": false,
+        "creationDate": 1373858900000,
+        "consumedDate": 1483858900000,
+        "initialWeight": {
+          "amount": 220,
+          "unit": "KG"
+        },
+        "actualWeight": {
+          "amount": 3.5,
+          "unit": "KG"
+        },
+        "accepted": "notRated",
+        "name": "Ethiopia Yirgacheffe",
+        "idTag": "PR-0101",
+        "trackingNumber": "KP923874",
+        "price": {
+          "amount": 4,
+          "currency": "USD"
+        },
+        "priceBaseUnit": {
+          "amount": 1,
+          "unit": "LBS"
+        },
+        "salesNumber": "TR-16-12244",
+        "grade": "AAA",
+        "notes": "First coffee from our new partner",
+        "processingStep": "coffee.roasting",
+        "purchaseOrderNumber": "PO-1234"
+      },
+      "relationships": {
+        "sourceContacts": {
+          "links": {
+            "self": "https://c-sar.cropster.com/api/v2/lots/AA/relationships/sourceContacts",
+            "related": "https://c-sar.cropster.com/api/v2/lots/AA/sourceContacts"
+          }
+        },
+        "latestSensorialQc": {
+          "links": {
+            "self": "https://c-sar.cropster.com/api/v2/lots/AA/relationships/latestSensorialQc",
+            "related": "https://c-sar.cropster.com/api/v2/lots/AA/latestSensorialQc"
+          },
+          "data": {
+            "type": "sensorialQcs",
+            "id": "ORIJ"
+          }
+        },
+        "project": {
+          "links": {
+            "self": "https://c-sar.cropster.com/api/v2/lots/AA/relationships/project",
+            "related": "https://c-sar.cropster.com/api/v2/lots/AA/project"
+          }
+        },
+        "variety": {
+          "links": {
+            "self": "https://c-sar.cropster.com/api/v2/lots/AA/relationships/variety",
+            "related": "https://c-sar.cropster.com/api/v2/lots/AA/variety"
+          },
+          "data": {
+            "type": "varieties",
+            "id": "AA"
+          }
+        },
+        "group": {
+          "links": {
+            "self": "https://c-sar.cropster.com/api/v2/lots/AA/relationships/group",
+            "related": "https://c-sar.cropster.com/api/v2/lots/AA/group"
+          },
+          "data": {
+            "type": "groups",
+            "id": "CROR"
+          }
+        },
+        "certificates": {
+          "links": {
+            "self": "https://c-sar.cropster.com/api/v2/lots/AA/relationships/certificates",
+            "related": "https://c-sar.cropster.com/api/v2/lots/AA/certificates"
+          }
+        },
+        "alerts": {
+          "links": {
+            "self": "https://c-sar.cropster.com/api/v2/api/v2/lots/AA/relationships/alerts",
+            "related": "https://c-sar.cropster.com/api/v2/api/v2/lots/AA/alerts"
+          }
+        },
+        "location": {
+          "links": {
+            "self": "https://c-sar.cropster.com/api/v2/lots/AA/relationships/location",
+            "related": "https://c-sar.cropster.com/api/v2/lots/AA/location"
+          },
+          "data": {
+            "type": "locations",
+            "id": "AA"
+          }
+        },
+        "processing": {
+          "data": {
+            "id": "AA",
+            "type": "processings"
+          },
+          "links": {
+            "self": "https://c-sar.cropster.com/api/v2/lots/AA/relationships/processing",
+            "related": "https://c-sar.cropster.com/api/v2/lots/AA/processing"
+          }
+        }
+      },
+      "links": {
+        "self": "https://c-sar.cropster.com/api/v2/lots/AA"
+      }
+    }
+  ]
+}

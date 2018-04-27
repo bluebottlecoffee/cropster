@@ -1,4 +1,7 @@
 require 'simplecov'
+require 'webmock'
+require 'webmock/fixtures'
+require 'webmock/test_unit'
 
 module SimpleCov::Configuration
   def clean_filters

@@ -1,6 +1,3 @@
-require 'typhoeus'
-require 'json'
-
 module Cropster
   class Client
     attr_reader :api_key, :api_secret, :group_code

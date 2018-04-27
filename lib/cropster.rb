@@ -1,3 +1,6 @@
+require 'typhoeus'
+require 'json'
+
 require "cropster/version"
 require "cropster/client"
 require 'cropster/constants'
