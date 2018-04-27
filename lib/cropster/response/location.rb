@@ -7,8 +7,8 @@ module Cropster::Response
     end
 
     def load_from_data(data)
-      @id   = data['id'].present? ? data['id'].to_i : 0
-      @name = data['name']
+      @id   = data[:id].present? ? data[:id].to_i : 0
+      @name = data[:name]
     end
   end
 end
