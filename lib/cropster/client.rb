@@ -10,6 +10,10 @@ module Cropster
       @group_code      = opts[:group_code]
     end
 
+    def lot(id)
+
+    end
+
     def green_lots(opts={})
       response = request(base_url(opts))
       raise ServiceUnavailableError unless response.code == 200
@@ -20,10 +24,6 @@ module Cropster
       response = request(base_url(opts.merge({processingStep: 'coffee.roasting'})))
       raise ServiceUnavailableError unless response.code == 200
       Cropster::Response::ResponseHandler.new.roast_batches(JSON.parse(response.body))
-    end
-
-    def uri_options(opts)
-      URI.encode(opts.map{|k,v| "#{k}=#{v}"}.join("&"))
     end
 
     protected
@@ -41,6 +41,10 @@ module Cropster
 
     def data_set(response)
       JSON.parse(response.body)["data"]
+    end
+
+    def uri_options(opts)
+      URI.encode(opts.map{|k,v| "#{k}=#{v}"}.join("&"))
     end
 
     def base_url(opts)
