@@ -38,3 +38,16 @@ require 'cropster'
 
 class Test::Unit::TestCase
 end
+
+def cropster_client
+  Cropster::Client.new({
+    api_key: "foo",
+    api_secret: "bar",
+    test_mode: true,
+    group_code: "CROR"
+  })
+end
+
+def load_fixture(fixture)
+  WebMock::Fixtures::Manager.run([fixture])
+end

@@ -20,12 +20,23 @@ module Cropster::Response
     def compile_data_with_model(model)
       model = Object.const_get("Cropster::Response::" + model)
 
-      @data_set.each do |data|
-        data.deep_symbolize_keys!
-        @compiled_data << model.new(data) if !data.empty?
-      end
-
+      process(model, @data_set)
       @compiled_data
+    end
+
+    def process(model, data_set)
+      if @data_set.is_a?(Array)
+        @data_set.each do |data|
+          process_data(model, data)
+        end
+      else
+        process_data(model, @data_set)
+      end
+    end
+
+    def process_data(model, data)
+      data.deep_symbolize_keys!
+      @compiled_data << model.new(data) if !data.empty?
     end
   end
 end

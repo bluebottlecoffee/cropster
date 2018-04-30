@@ -1,10 +1,12 @@
 require 'typhoeus'
 require 'json'
 
+require "cropster/base"
 require "cropster/hash"
 require "cropster/version"
 require "cropster/client"
 require 'cropster/constants'
+require 'cropster/lot'
 
 require 'cropster/response/response_handler'
 require 'cropster/response/formatted_response_item'

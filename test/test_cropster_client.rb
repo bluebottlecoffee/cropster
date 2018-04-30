@@ -2,7 +2,6 @@ require 'test_helper'
 
 class Cropster::ClientTest < Test::Unit::TestCase
   def setup
-    register_fixtures
   end
 
   def test_initialize
@@ -13,38 +12,4 @@ class Cropster::ClientTest < Test::Unit::TestCase
     assert_equal "bar", client.api_secret
     assert_equal "CROR", client.group_code
   end
-
-  def test_lots_success
-    @manager = WebMock::Fixtures::Manager.run([:lots_success])
-    stub = @manager[:lots_success]
-    client = cropster_client
-    lots = client.lots
-    assert_equal 1, lots.length
-  end
-
-  def test_lots_failure
-    WebMock::Fixtures::Manager.run([:lots_failure])
-    assert_raise Cropster::Client::ServiceUnavailableError do
-      client = cropster_client
-      lots = client.lots
-    end
-  end
-
-  def cropster_client
-    Cropster::Client.new({ api_key: "foo",
-                           api_secret: "bar",
-                           test_mode: true,
-                           group_code: 'CROR' })
-  end
-
-  def register_fixtures
-    url = "https://foo:bar@private-anon-e2e6946d27-cropstercore.apiary-mock.com/api/v2/lots?filter%5Blots%5D%5Bgroup%5D=CROR"
-    WebMock::Fixtures::Manager.register_fixture_file(
-      :lots_success, :get, url, "test/fixtures/lots_success.json"
-    )
-    WebMock::Fixtures::Manager.register_fixture_file(
-      :lots_failure, :get, url, 'test/fixtures/lots_failure.json'
-    )
-  end
-
 end
