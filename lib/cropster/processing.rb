@@ -1,7 +1,9 @@
 module Cropster
   class Processing < Cropster::Base
     def processing(id)
-
+      response = @client.request(base_url + "/processings/#{id}")
+      raise ServiceUnavailableError unless response.code == 200
+      process(response).first
     end
 
     def processings(opts={})
