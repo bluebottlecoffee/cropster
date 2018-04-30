@@ -12,9 +12,9 @@ module Cropster::Response
       compile_data_with_model('Lot')
     end
 
-    def roast_batches(data_set)
+    def processings(data_set)
       @data_set = data_set
-      compile_data_with_model('RoastBatch')
+      compile_data_with_model('Processing')
     end
 
     def compile_data_with_model(model)

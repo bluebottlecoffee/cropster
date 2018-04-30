@@ -6,8 +6,9 @@ module Cropster
       @client= client.nil? ? Cropster::Client.new() : client
     end
 
+    protected
     def base_url
-      "#{@client.base_url}/"
+      "#{@client.base_url}"
     end
   end
 end

@@ -16,13 +16,8 @@ module Cropster
       "?filter[lots][group]=#{@client.group_code}&#{@client.uri_options("lots", opts)}"
     end
 
-    protected
     def process(response)
       Cropster::Response::ResponseHandler.new.lots(@client.data_set(response))
-    end
-
-    def base_url
-      "#{@client.base_url}"
     end
   end
 end

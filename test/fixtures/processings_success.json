@@ -1,0 +1,98 @@
+HTTP/1.1 200 OK
+server: Cowboy
+x-apiary-ratelimit-limit: 120
+x-apiary-ratelimit-remaining: 119
+content-type: application/vnd.api+json;charset=UTF-8
+access-control-allow-origin: *
+access-control-allow-methods: OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT
+access-control-max-age: 10
+x-apiary-transaction-id: 5ae1852c807d360a0002517c
+content-length: 3579
+date: Thu, 26 Apr 2018 07:52:12 GMT
+
+{
+  "data": [
+    {
+      "type": "processings",
+      "id": "AA",
+      "attributes": {
+        "worker": "John Doe",
+        "startedDate": 1462904878082,
+        "endedDate": 1462904878082,
+        "duration": 10000,
+        "notes": "My processing notes",
+        "startWeight": {
+          "amount": 101.1,
+          "unit": "KG"
+        },
+        "endWeight": {
+          "amount": 98.24,
+          "unit": "KG"
+        },
+        "measures": [
+          {
+            "name": "roastAreaIndex",
+            "value": {
+              "amount": 10000.1,
+              "unit": "CELSIUS"
+            }
+          }
+        ],
+        "comments": [
+          {
+            "time": 90000,
+            "text": null,
+            "event": "firstCrack"
+          }
+        ]
+      },
+      "relationships": {
+        "lot": {
+          "links": {
+            "related": "https://c-sar.cropster.com/api/v2/lots/AA"
+          },
+          "data": {
+            "type": "lots",
+            "id": "AA"
+          }
+        },
+        "machine": {
+          "links": {
+            "related": "https://c-sar.cropster.com/api/v2/processings/AA/machine"
+          },
+          "data": {
+            "type": "machines",
+            "id": "AA"
+          }
+        },
+        "profile": {
+          "links": {
+            "related": "https://c-sar.cropster.com/api/v2/processings/AA/profile"
+          },
+          "data": {
+            "type": "profiles",
+            "id": "AA"
+          }
+        },
+        "processingComments": {
+          "links": {
+            "self": "https://c-sar.cropster.com/api/v2/processings/AA/relationships/processingComments",
+            "related": "https://c-sar.cropster.com/api/v2/processings/AA/processingComments"
+          }
+        },
+        "processingMeasures": {
+          "links": {
+            "self": "https://c-sar.cropster.com/api/v2/processings/AA/relationships/processingMeasures",
+            "related": "https://c-sar.cropster.com/api/v2/processings/AA/processingMeasures"
+          }
+        },
+        "processingCurves": {
+          "links": {
+            "self": "https://c-sar.cropster.com/api/v2/processings/AA/relationships/processingCurves",
+            "related": "https://c-sar.cropster.com/api/v2/processings/AA/processingCurves"
+          }
+        }
+      }
+    }
+  ]
+}

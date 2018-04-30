@@ -17,7 +17,6 @@ module Cropster
     end
 
     def base_url
-      # "#{host}#{@api_path}/lots?filter%5Blots%5D%5Bgroup%5D=#{@group_code}&#{uri_options(opts)}"
       "#{host}#{@api_path}"
     end
 
