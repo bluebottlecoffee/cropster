@@ -7,9 +7,9 @@ module Cropster::Response
       @compiled_data = []
     end
 
-    def green_lots(data_set)
+    def lots(data_set)
       @data_set = data_set
-      compile_data_with_model('GreenLot')
+      compile_data_with_model('Lot')
     end
 
     def roast_batches(data_set)

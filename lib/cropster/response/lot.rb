@@ -1,5 +1,5 @@
 module Cropster::Response
-  class GreenLot < Cropster::Response::FormattedResponseItem
+  class Lot < Cropster::Response::FormattedResponseItem
     def initialize(data)
       super(data)
     end

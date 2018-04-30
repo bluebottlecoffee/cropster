@@ -14,10 +14,10 @@ module Cropster
 
     end
 
-    def green_lots(opts={})
+    def lots(opts={})
       response = request(base_url(opts))
       raise ServiceUnavailableError unless response.code == 200
-      Cropster::Response::ResponseHandler.new.green_lots(data_set(response))
+      Cropster::Response::ResponseHandler.new.lots(data_set(response))
     end
 
     def roast_batches(opts={})
