@@ -13,11 +13,12 @@ module Cropster
     end
 
     def url_filter(opts={})
-      "][profile?filter[processings][group]=#{group_code}&#{@client.uri_options("processings", opts)}"
+      "][profile?#{uri_options("processings", opts.merge({group: group_code}))}"
     end
 
     def process(response)
-      Cropster::Response::ResponseHandler.new.processings(data_set(response))
+      Cropster::Response::ResponseHandler.
+        new("Processing", data_set(response)).compiled_data
     end
   end
 end

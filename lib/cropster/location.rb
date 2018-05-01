@@ -13,11 +13,12 @@ module Cropster
     end
 
     def url_filter(opts={})
-      "?filter[locations][group]=#{group_code}&#{@client.uri_options("locations", opts)}"
+      "?#{uri_options("locations", opts.merge({group: group_code}))}"
     end
 
     def process(response)
-      Cropster::Response::ResponseHandler.new.locations(@client.data_set(response))
+      Cropster::Response::ResponseHandler.
+        new("Location", data_set(response)).compiled_data
     end
   end
 end

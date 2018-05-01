@@ -5,6 +5,7 @@ require "cropster/base"
 require "cropster/hash"
 require "cropster/version"
 require "cropster/client"
+require "cropster/contact"
 require 'cropster/constants'
 require 'cropster/lot'
 require 'cropster/location'

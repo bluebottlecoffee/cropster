@@ -13,8 +13,7 @@ module Cropster::Response
     def load_from_data(data)
       super
       @type = data[:type]
-      load_location(data[:relationships][:location])
-      load_project(data[:relationships][:project])
+      load_relationships(data[:relationships])
     end
 
     def load_attributes(attributes)

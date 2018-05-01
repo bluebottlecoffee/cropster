@@ -13,9 +13,8 @@ module Cropster::Response
 
     def load_attributes(attributes); end
 
-    def load_location(data)
-      return if data[:data].nil?
-      @location = Cropster::Response::Location.new(data[:data])
+    def load_relationships(relationships)
+
     end
 
     def load_project(data)

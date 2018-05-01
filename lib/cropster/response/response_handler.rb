@@ -3,27 +3,14 @@ module Cropster::Response
     attr_accessor :data_set
     attr_accessor :compiled_data
 
-    def initialize
+    def initialize(klass, data_set)
       @compiled_data = []
-    end
-
-    def lots(data_set)
       @data_set = data_set
-      compile_data_with_model('Lot')
+      compile_data(klass)
     end
 
-    def processings(data_set)
-      @data_set = data_set
-      compile_data_with_model('Processing')
-    end
-
-    def locations(data_set)
-      @data_set = data_set
-      compile_data_with_model("Location")
-    end
-
-    def compile_data_with_model(model)
-      model = Object.const_get("Cropster::Response::" + model)
+    def compile_data(klass)
+      model = Object.const_get("Cropster::Response::" + klass)
 
       process(model, @data_set)
       @compiled_data

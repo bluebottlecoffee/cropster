@@ -1,7 +1,7 @@
 module Cropster
   class Lot < Cropster::Base
     def lot(id)
-      response = get_response("/lot/#{id}")
+      response = get_response("/lots/#{id}")
       raise ServiceUnavailableError unless response.code == 200
       process(response).first
     end
@@ -13,11 +13,12 @@ module Cropster
     end
 
     def url_filter(opts={})
-      "?filter[lots][group]=#{group_code}&#{@client.uri_options("lots", opts)}"
+      "?#{uri_options("lots", opts.merge({group: group_code}))}"
     end
 
     def process(response)
-      Cropster::Response::ResponseHandler.new.lots(data_set(response))
+      Cropster::Response::ResponseHandler.
+        new("Lot", data_set(response)).compiled_data
     end
   end
 end

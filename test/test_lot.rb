@@ -25,12 +25,6 @@ class Cropster::LotTest < Test::Unit::TestCase
     assert_equal 1, lots.length
   end
 
-  def test_url_filter
-    lot = Cropster::Lot.new(cropster_client)
-    response = lot.url_filter({idTag: "foo"})
-    assert_equal "?filter[lots][group]=CROR&filter[lots][idTag]=foo", response
-  end
-
   def test_lots_failure
     register_lots_fixtures
     load_fixture(:lots_failure)
@@ -40,7 +34,7 @@ class Cropster::LotTest < Test::Unit::TestCase
   end
 
   def register_lot_fixtures
-    url = "https://foo:bar@private-anon-e2e6946d27-cropstercore.apiary-mock.com/api/v2/lot/AA"
+    url = "https://foo:bar@private-anon-e2e6946d27-cropstercore.apiary-mock.com/api/v2/lots/AA"
     WebMock::Fixtures::Manager.register_fixture_file(
       :lot_success, :get, url, "test/fixtures/lot_success.json"
     )

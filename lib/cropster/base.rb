@@ -18,6 +18,10 @@ module Cropster
       @client.data_set(response)
     end
 
+    def uri_options(filter, opts)
+      @client.uri_options(filter, opts)
+    end
+
     protected
     def base_url
       "#{@client.base_url}"
