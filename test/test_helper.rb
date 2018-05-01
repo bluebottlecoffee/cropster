@@ -51,3 +51,8 @@ end
 def load_fixture(fixture)
   WebMock::Fixtures::Manager.run([fixture])
 end
+
+def register_fixture(fixture, operation, url, file)
+  WebMock::Fixtures::Manager.
+    register_fixture_file(fixture, operation, url, "test/fixtures/#{file}")
+end
