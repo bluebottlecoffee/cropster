@@ -2,13 +2,13 @@ module Cropster
   class Lot < Cropster::Base
     def lot(id)
       response = get_response("/lots/#{id}")
-      raise ServiceUnavailableError unless response.code == 200
+      handle_error(response)
       process(response).first
     end
 
     def lots(opts={})
       response = get_response("/lots" + url_filter(opts))
-      raise ServiceUnavailableError unless response.code == 200
+      handle_error(response)
       process(response)
     end
 

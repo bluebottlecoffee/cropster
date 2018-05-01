@@ -2,13 +2,13 @@ module Cropster
   class Processing < Cropster::Base
     def processing(id)
       response = get_response("/processings/#{id}")
-      raise ServiceUnavailableError unless response.code == 200
+      handle_error(response)
       process(response).first
     end
 
     def processings(opts={})
       response = get_response("/processings#{url_filter(opts)}")
-      raise ServiceUnavailableError unless response.code == 200
+      handle_error(response)
       process(response)
     end
 

@@ -22,6 +22,10 @@ module Cropster
       @client.uri_options(filter, opts)
     end
 
+    def handle_error(response)
+      raise ServiceUnavailableError unless response.code == 200
+    end
+
     protected
     def base_url
       "#{@client.base_url}"

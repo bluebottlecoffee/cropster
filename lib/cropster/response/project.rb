@@ -1,14 +1,20 @@
 module Cropster::Response
-  class Project
-    attr_accessor :id, :name
+  class Project < Cropster::Response::FormattedResponseItem
+    attr_accessor :id, :name, :type, :description, :is_archived
 
     def initialize(data)
-      load_from_data(data)
+      super(data)
     end
 
     def load_from_data(data)
-      @id   = data[:id].present? ? data[:id].to_i : 0
-      @name = data[:name]
+      super
+      @type = data[:type]
+    end
+
+    def load_attributes(attributes)
+      @name = attributes[:name]
+      @description = attributes[:description]
+      @is_archived = attributes[:isArchived]
     end
   end
 end

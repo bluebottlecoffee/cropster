@@ -2,13 +2,13 @@ module Cropster
   class Contact < Cropster::Base
     def contact(id)
       response = get_response("/contacts/#{id}")
-      raise ServiceUnavailableError unless response.code == 200
+      handle_error(response)
       process(response).first
     end
 
     def contacts(opts={})
       response = get_response("/contacts" + url_filter(opts))
-      raise ServiceUnavailableError unless response.code == 200
+      handle_error(response)
       process(response)
     end
 
