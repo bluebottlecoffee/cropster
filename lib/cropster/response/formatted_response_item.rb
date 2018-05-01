@@ -1,5 +1,10 @@
 module Cropster::Response
   class FormattedResponseItem
+    attr_accessor :id, :type
+    attr_accessor :source_contacts, :sensorial_qcs, :projects,
+      :varieties, :groups, :certificates, :alerts, :locations,
+      :processings, :machines, :profiles, :lots
+
     def initialize(data)
       @sources = []
       @certifications = []
@@ -9,12 +14,25 @@ module Cropster::Response
     def load_from_data(data)
       @id = data[:id]
       load_attributes(data[:attributes])
+      load_relationships(data[:relationships])
     end
 
     def load_attributes(attributes); end
 
     def load_relationships(relationships)
-
+      relationships = Cropster::Response::Relationship.new(relationships).result
+      @source_contacts = relationships[:source_contacts]
+      @sensorial_qcs = relationships[:sensorial_qcs]
+      @projects = relationships[:projects]
+      @varieties = relationships[:varieties]
+      @groups = relationships[:groups]
+      @certificates = relationships[:certificates]
+      @alerts = relationships[:alerts]
+      @locations = relationships[:locations]
+      @processings = relationships[:processings]
+      @machines = relationships[:machines]
+      @profiles = relationships[:profiles]
+      @lots = relationships[:lots]
     end
 
     def load_project(data)

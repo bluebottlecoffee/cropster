@@ -18,6 +18,10 @@ class Cropster::Response::LotTest < Test::Unit::TestCase
     assert_equal 4, item.price.amount
     assert_equal "LBS", item.price.base_unit
     assert_equal "USD", item.price.currency
+    assert_equal ["AA"], item.varieties
+    assert_equal ["CROR"], item.groups
+    assert_equal ["ORIJ"], item.sensorial_qcs
+    assert_equal ["AA"], item.processings
   end
 
   def valid_response

@@ -1,10 +1,9 @@
 module Cropster::Response
   class Lot < Cropster::Response::FormattedResponseItem
-    attr_accessor :id, :id_tag, :type, :name, :created_at, :consumed_at,
-                  :location, :sources, :weight, :price, :project,
+    attr_accessor :id_tag, :name, :created_at, :consumed_at,
+                  :location, :weight, :price, :project,
                   :initial_weight, :tracking_number, :grade, :sales_number,
-                  :notes, :processing_step, :purchase_order_number,
-                  :certifications
+                  :notes, :processing_step, :purchase_order_number
 
     def initialize(data)
       super(data)

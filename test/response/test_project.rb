@@ -6,6 +6,7 @@ class Cropster::Response::ProjectTest < Test::Unit::TestCase
     assert_match(/projects/, project.type)
     assert_match(/My Project/, project.name)
     assert_match(/More project details/, project.description)
+    assert_equal(["CROR"], project.groups)
   end
 
   def valid_response

@@ -24,6 +24,7 @@ require 'cropster/response/source'
 require 'cropster/response/lot'
 require 'cropster/response/processing'
 require 'cropster/response/project'
+require 'cropster/response/relationship'
 require 'cropster/response/variety'
 
 ServiceUnavailableError = Class.new(StandardError)

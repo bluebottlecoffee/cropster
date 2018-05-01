@@ -29,8 +29,10 @@ Optional keys for the client initialization include:
 ## Usage
 
 ### Contacts
+
 #### List Contacts
     Cropster::Contact.new(CropsterClient).contacts({})
+
 #### Get a Contact
     Cropster::Contact.new(CropsterClient).contact("ID")
 

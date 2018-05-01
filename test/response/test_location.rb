@@ -8,6 +8,7 @@ class Cropster::Response::LocationTest < Test::Unit::TestCase
     assert_match(/11001/, location.zip)
     assert_match(/My City/, location.city)
     assert_match(/US/, location.country)
+    assert_equal ["CROR"], location.groups
   end
 
   def valid_response

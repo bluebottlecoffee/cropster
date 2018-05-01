@@ -16,6 +16,7 @@ class Cropster::Response::ContactTest < Test::Unit::TestCase
     assert_match(/123456-15/, contact.fax)
     assert_match(/john.doe@/, contact.email)
     assert_match(/oneawesomecompanyname.com/, contact.website)
+    assert_equal ["CROR"], contact.groups
   end
 
   def valid_response

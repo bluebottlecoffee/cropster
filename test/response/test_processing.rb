@@ -7,6 +7,9 @@ class Cropster::Response::ProcessingTest < Test::Unit::TestCase
     assert_match(/My processing notes/, processing.notes)
     assert_equal(101.1, processing.start_weight.amount)
     assert_equal(98.24, processing.end_weight.amount)
+    assert_equal(["AA"], processing.lots)
+    assert_equal(["AA"], processing.machines)
+    assert_equal(["AA"], processing.profiles)
   end
 
   def valid_response
