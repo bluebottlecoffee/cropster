@@ -13,7 +13,7 @@ module Cropster
     end
 
     def url_filter(opts={})
-      "?#{uri_options("locations", opts.merge({group: group_code}))}"
+      "?#{uri_options("locations", opts)}"
     end
 
     def process(response)

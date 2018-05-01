@@ -25,6 +25,7 @@ module Cropster
     end
 
     def uri_options(filter_type, opts)
+      opts = opts.merge({ group: @group_code })
       URI.encode(opts.map{|k,v| "filter[#{filter_type}][#{k}]=#{v}"}.join("&"))
     end
 

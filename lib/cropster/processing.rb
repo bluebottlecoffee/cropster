@@ -13,7 +13,7 @@ module Cropster
     end
 
     def url_filter(opts={})
-      "][profile?#{uri_options("processings", opts.merge({group: group_code}))}"
+      "][profile?#{uri_options("processings", opts)}"
     end
 
     def process(response)
