@@ -17,7 +17,8 @@ module Cropster
     end
 
     def process(response)
-      Cropster::Response::ResponseHandler.new("Contact", data_set(resposne))
+      Cropster::Response::ResponseHandler.
+        new("Contact", data_set(response)).compiled_data
     end
   end
 end
