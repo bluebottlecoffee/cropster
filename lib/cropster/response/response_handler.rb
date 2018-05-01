@@ -17,6 +17,11 @@ module Cropster::Response
       compile_data_with_model('Processing')
     end
 
+    def locations(data_set)
+      @data_set = data_set
+      compile_data_with_model("Location")
+    end
+
     def compile_data_with_model(model)
       model = Object.const_get("Cropster::Response::" + model)
 

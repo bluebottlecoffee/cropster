@@ -1,14 +1,23 @@
 module Cropster::Response
-  class Location
-    attr_accessor :id, :name
+  class Location < Cropster::Response::FormattedResponseItem
+    attr_accessor :id, :type, :name, :street, :zip, :city, :country
 
     def initialize(data)
-      load_from_data(data)
+      super(data)
     end
 
     def load_from_data(data)
-      @id   = data[:id].nil? ? data[:id].to_i : 0
-      @name = data[:name]
+      super
+      @type = data[:type]
+    end
+
+    def load_attributes(attributes)
+      return if attributes.nil?
+      @name = attributes[:name]
+      @street = attributes[:street]
+      @zip = attributes[:zip]
+      @city = attributes[:city]
+      @country = attributes[:country]
     end
   end
 end

@@ -10,18 +10,12 @@ module Cropster
       @group_code      = opts[:group_code] ||= ENV['CROPSTER_GROUP_CODE']
     end
 
-    def roast_batches(opts={})
-      response = request(base_url(opts.merge({processingStep: 'coffee.roasting'})))
-      raise ServiceUnavailableError unless response.code == 200
-      Cropster::Response::ResponseHandler.new.roast_batches(JSON.parse(response.body))
-    end
-
     def base_url
       "#{host}#{@api_path}"
     end
 
     def request(url)
-      Typhoeus::Request.get(url, userpwd: authentication)
+      Typhoeus::Request.get(base_url + url, userpwd: authentication)
     end
 
     def data_set(response)

@@ -10,7 +10,7 @@ class Cropster::ProcessingTest < Test::Unit::TestCase
     assert_not_nil processing
   end
 
-  def test_lots
+  def test_processings
     register_processings_fixtures
     load_fixture(:processings_success)
     processings = Cropster::Processing.new(cropster_client).processings
@@ -19,7 +19,7 @@ class Cropster::ProcessingTest < Test::Unit::TestCase
     assert_equal "John Doe", processing.worker
   end
 
-  def test_lot
+  def test_processing
     register_processing_fixtures
     load_fixture(:processing_success)
     processing = Cropster::Processing.new(cropster_client).processing("AA")

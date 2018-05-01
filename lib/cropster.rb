@@ -7,6 +7,7 @@ require "cropster/version"
 require "cropster/client"
 require 'cropster/constants'
 require 'cropster/lot'
+require 'cropster/location'
 require 'cropster/processing'
 
 require 'cropster/response/response_handler'

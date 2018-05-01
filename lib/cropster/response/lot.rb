@@ -18,6 +18,7 @@ module Cropster::Response
     end
 
     def load_attributes(attributes)
+      return if attributes.nil?
       @is_sample = attributes[:isSample]
       @id_tag = attributes[:idTag]
       @tracking_number = attributes[:trackingNumber]
