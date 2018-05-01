@@ -6,8 +6,6 @@ class Cropster::ProjectTest < Test::Unit::TestCase
     load_fixture(:project_success)
     project = Cropster::Project.new(cropster_client).project("AA")
     assert_match(/AA/, project.id)
-    assert_match(/My Project/, project.name)
-    assert_match(/More project details/, project.description)
   end
 
   def test_projects_success

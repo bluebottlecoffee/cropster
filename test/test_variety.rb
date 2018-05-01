@@ -6,9 +6,6 @@ class Cropster::VarietyTest < Test::Unit::TestCase
     load_fixture(:variety_success)
     variety = Cropster::Variety.new(cropster_client).variety("YB")
     assert_match(/YB/, variety.id)
-    assert_match(/Bourbon/, variety.name)
-    assert_match(/varieties/, variety.type)
-    assert_match(/coffee/, variety.product_type)
   end
 
   def test_varieties_success

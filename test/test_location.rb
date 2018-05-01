@@ -6,10 +6,6 @@ class Cropster::LocationTest < Test::Unit::TestCase
     load_fixture(:location_success)
     location = Cropster::Location.new(cropster_client).location("AA")
     assert_equal "My Warehouse", location.name
-    assert_match(/101 My Street/, location.street)
-    assert_match(/11001/, location.zip)
-    assert_match(/My City/, location.city)
-    assert_match(/US/, location.country)
   end
 
   def test_locations_success
