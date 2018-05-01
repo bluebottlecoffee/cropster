@@ -16,6 +16,7 @@ class Cropster::VarietyTest < Test::Unit::TestCase
     load_fixture(:varieties_success)
     varieties = Cropster::Variety.new(cropster_client).varieties
     assert_equal 1, varieties.length
+    assert_match(/YB/, varieties.first.id)
   end
 
   def register_fixtures

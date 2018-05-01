@@ -1,19 +1,15 @@
 module Cropster
   class Processing < Cropster::Base
     def processing(id)
-      response = get_response("/processings/#{id}")
-      handle_error(response)
-      process(response).first
+      find_by_id("processings", id).first
     end
 
     def processings(opts={})
-      response = get_response("/processings#{url_filter(opts)}")
-      handle_error(response)
-      process(response)
+      find_collection("processings", opts)
     end
 
-    def url_filter(opts={})
-      "][profile?#{uri_options("processings", opts)}"
+    def url_filter(filter, opts={})
+      "][profile?#{uri_options(filter, opts)}"
     end
 
     def process(response)

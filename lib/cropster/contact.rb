@@ -1,19 +1,11 @@
 module Cropster
   class Contact < Cropster::Base
     def contact(id)
-      response = get_response("/contacts/#{id}")
-      handle_error(response)
-      process(response).first
+      find_by_id("contacts", id).first
     end
 
     def contacts(opts={})
-      response = get_response("/contacts" + url_filter(opts))
-      handle_error(response)
-      process(response)
-    end
-
-    def url_filter(opts={})
-      "?#{uri_options("contacts", opts)}"
+      find_collection("contacts", opts)
     end
 
     def process(response)
