@@ -2,7 +2,7 @@ require 'test_helper'
 
 class Cropster::ContactTest < Test::Unit::TestCase
   def test_contact_success
-    register_contact_fixture
+    register_fixtures
     load_fixture(:contact_success)
     contact = Cropster::Contact.new(cropster_client).contact("AA")
     assert_match(/John/, contact.first_name)
@@ -21,22 +21,16 @@ class Cropster::ContactTest < Test::Unit::TestCase
   end
 
   def test_contacts_success
-    register_contacts_fixtures
+    register_fixtures
     load_fixture(:contacts_success)
     contacts = Cropster::Contact.new(cropster_client).contacts
     assert_equal 1, contacts.length
   end
 
-  def register_contact_fixture
-    url = "https://foo:bar@private-anon-e2e6946d27-cropstercore.apiary-mock.com/api/v2/contacts/AA"
-    WebMock::Fixtures::Manager.register_fixture_file(
-      :contact_success, :get, url, "test/fixtures/contact_success.json"
-    )
-  end
-  def register_contacts_fixtures
-    url = "https://foo:bar@private-anon-e2e6946d27-cropstercore.apiary-mock.com/api/v2/contacts?filter[contacts][group]=CROR"
-    WebMock::Fixtures::Manager.register_fixture_file(
-      :contacts_success, :get, url, "test/fixtures/contacts_success.json"
-    )
+  def register_fixtures
+    url = fixture_url("contacts/AA")
+    register_fixture(:contact_success, :get, url, "contact_success.json")
+    url = fixture_url("contacts?filter[contacts][group]=CROR")
+    register_fixture(:contacts_success, :get, url, "contacts_success.json")
   end
 end

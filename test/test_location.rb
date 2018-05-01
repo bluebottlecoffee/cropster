@@ -20,9 +20,9 @@ class Cropster::LocationTest < Test::Unit::TestCase
   end
 
   def register_fixtures
-    url = "https://foo:bar@private-anon-e2e6946d27-cropstercore.apiary-mock.com/api/v2/locations/AA"
+    url = fixture_url("locations/AA")
     register_fixture(:location_success, :get, url, "location_success.json")
-    url = "https://foo:bar@private-anon-e2e6946d27-cropstercore.apiary-mock.com/api/v2/locations?filter[locations][group]=CROR"
+    url = fixture_url("locations?filter[locations][group]=CROR")
     register_fixture(:locations_success, :get, url, "locations_success.json")
   end
 end

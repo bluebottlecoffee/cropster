@@ -18,9 +18,9 @@ class Cropster::ProjectTest < Test::Unit::TestCase
   end
 
   def register_fixtures
-    url = "https://foo:bar@private-anon-e2e6946d27-cropstercore.apiary-mock.com/api/v2/projects/AA"
+    url = fixture_url("projects/AA")
     register_fixture(:project_success, :get, url, "project_success.json")
-    url = "https://foo:bar@private-anon-e2e6946d27-cropstercore.apiary-mock.com/api/v2/projects?filter[projects][group]=CROR"
+    url = fixture_url("projects?filter[projects][group]=CROR")
     register_fixture(:projects_success, :get, url, "projects_success.json")
   end
 end

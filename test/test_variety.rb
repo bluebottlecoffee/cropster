@@ -20,9 +20,10 @@ class Cropster::VarietyTest < Test::Unit::TestCase
   end
 
   def register_fixtures
-    url = "https://foo:bar@private-anon-e2e6946d27-cropstercore.apiary-mock.com/api/v2/varieties/YB"
+    url = fixture_url("varieties/YB")
     register_fixture(:variety_success, :get, url, "variety_success.json")
-    url = "https://foo:bar@private-anon-e2e6946d27-cropstercore.apiary-mock.com/api/v2/varieties?filter[varieties][group]=CROR"
+
+    url = fixture_url("varieties?filter[varieties][group]=CROR")
     register_fixture(:varieties_success, :get, url, "varieties_success.json")
   end
 end

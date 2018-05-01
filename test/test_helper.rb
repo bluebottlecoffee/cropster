@@ -56,3 +56,7 @@ def register_fixture(fixture, operation, url, file)
   WebMock::Fixtures::Manager.
     register_fixture_file(fixture, operation, url, "test/fixtures/#{file}")
 end
+
+def fixture_url(url)
+  "https://foo:bar@private-anon-e2e6946d27-cropstercore.apiary-mock.com/api/v2/#{url}"
+end

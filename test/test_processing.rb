@@ -24,12 +24,11 @@ class Cropster::ProcessingTest < Test::Unit::TestCase
   end
 
   def register_fixtures
-    url = "https://foo:bar@private-anon-e2e6946d27-cropstercore.apiary-mock.com/api/v2/processings/AA"
-
+    url = fixture_url("processings/AA")
     register_fixture(:processing_success, :get, url, "processing_success.json")
-    # url = "https://foo:bar@private-anon-e2e6946d27-cropstercore.apiary-mock.com/api/v2/processings][profile?filter[processings][group]=CROR&sort[processings][startDate]=desc"
-    url = "https://foo:bar@private-anon-e2e6946d27-cropstercore.apiary-mock.com/api/v2/processings][profile?filter[processings][group]=CROR"
 
+    # url = fixture_url("processings][profile?filter[processings][group]=CROR&sort[processings][startDate]=desc")
+    url = fixture_url("processings][profile?filter[processings][group]=CROR")
     register_fixture(:processings_success, :get, url, "processings_success.json")
   end
 end

@@ -25,15 +25,15 @@ class Cropster::LotTest < Test::Unit::TestCase
   def test_lots_failure
     register_fixtures
     load_fixture(:lots_failure)
-    assert_raise Cropster::Client::ServiceUnavailableError do
-      lots = Cropster::Lot.new(cropster_client).lots
+    assert_raise ServiceUnavailableError do
+      Cropster::Lot.new(cropster_client).lots
     end
   end
 
   def register_fixtures
-    url = "https://foo:bar@private-anon-e2e6946d27-cropstercore.apiary-mock.com/api/v2/lots/AA"
+    url = fixture_url("lots/AA")
     register_fixture(:lot_success, :get, url, "lot_success.json")
-    url = "https://foo:bar@private-anon-e2e6946d27-cropstercore.apiary-mock.com/api/v2/lots?filter[lots][group]=CROR"
+    url = fixture_url("lots?filter[lots][group]=CROR")
     register_fixture(:lots_success, :get, url, "lots_success.json")
     register_fixture(:lots_failure, :get, url, 'lots_failure.json')
   end
