@@ -14,62 +14,55 @@ And then execute:
 Or install it yourself as:
 
     $ gem install cropster
-    
+
 Setup Initializer
 
-    CropsterClient = Cropster::Client.new(
-                  :client_username => ENV['CROPSTER_USERNAME'], 
-                  :client_password => ENV['CROPSTER_PASSWORD'],
-                  :group_code => ENV['CROPSTER_GROUP_CODE'])
-                  
+    CropsterClient = Cropster::Client.new({
+                  :api_key => ENV['CROPSTER_API_KEY'],
+                  :api_secret => ENV['CROPSTER_API_SECRET'],
+                  :group_code => ENV['CROPSTER_GROUP_CODE']})
+
+Optional keys for the client initialization include:
+
+    :test_mode (true | false)
 
 ## Usage
 
-###Green Lots Request
+### Contacts
+#### List Contacts
+    Cropster::Contact.new(CropsterClient).contacts({})
+#### Get a Contact
+    Cropster::Contact.new(CropsterClient).contact("ID")
 
-    CropsterClient.green_lots
+### Locations
+#### List Locations
+    Cropster::Location.new(CropsterClient).locations({})
+#### Get a Location
+    Cropster::Location.new(CropsterClient).location("ID")
 
-###Green Lots Response
+### Lots
+#### Get a Lot
+    Cropster::Lot.new(CropsterClient).lot("ID")
+#### List Lots
+    Cropster::Lot.new(CropsterClient).lots
 
-    [{"id"=>632684,
-      "idTag"=>"PG-0036",
-      "name"=>"Ethiopia ORG Sidamo Suke Quto",
-      "location"=>{"id"=>55789, "name"=>"Some Location"},
-      "creationDate"=>1399379937000,
-      "project"=>{"id"=>3076, "name"=>"Ethiopian Washed Blender BC-WETH"},
-      "weight"=>{"amount"=>7.141, "unit"=>"BAG60KG"}},
-     {"id"=>630173,
-      "idTag"=>"PG-0064",
-      "name"=>"Peru ORG Perene River",
-      "location"=>{"id"=>55789, "name"=>"Some Location"},
-      "creationDate"=>1399306071000,
-      "project"=>{"id"=>3293, "name"=>"Iced BC-ICED"},
-      "weight"=>{"amount"=>17.086, "unit"=>"BAG69KG"}}]
-      
-###Roasted Lots Request
-    
-    CropsterClient.roasts
-    
-###Roasted Lots Response
-    
-    [{"id"=>669245,
-      "idTag"=>"PR-10237",
-      "name"=>"Costa Rica Vista el Valle Zapote",
-      "location"=>{"id"=>55789, "name"=>"Some Location"},
-      "creationDate"=>1401121036000,
-      "project"=>{"id"=>3289, "name"=>"Costa Rica SO"},
-      "weight"=>{"amount"=>30.0, "unit"=>"LBS"}},
-     {"id"=>669220,
-      "idTag"=>"PR-10236",
-      "name"=>"Retrofit IV NYC",
-      "location"=>{"id"=>55789, "name"=>"Some Location"},
-      "creationDate"=>1401120213000,
-      "project"=>nil,
-      "weight"=>{"amount"=>48.0, "unit"=>"LBS"}}]
-      
-###Example Optional Params
-    CropsterClient.green_lots({page: 1, perPage: 200, locationId: 55789})
-*perPage max is 200
+### Processing
+#### List Processings
+    Cropster::Processing.new(CropsterClient).processings({})
+#### Get a Processing (roast)
+    Cropster::Processing.new(CropsterClient).processing("ID")
+
+### Projects
+#### List Projects
+    Cropster::Project.new(CropsterClient).projects({})
+#### Get a Project
+    Cropster::Project.new(CropsterClient).project("ID")
+
+### Varieties
+#### List Varieties
+    Cropster::Variety.new(CropsterClient).varieties({})
+#### Get a Variety
+    Cropster::Variety.new(CropsterClient).variety("ID")
 
 ## Contributing
 
