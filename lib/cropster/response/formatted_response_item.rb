@@ -1,3 +1,6 @@
+##
+# The parent class for the various Cropster::Response classes
+#
 module Cropster::Response
   class FormattedResponseItem
     attr_accessor :id, :type, :link
@@ -5,12 +8,16 @@ module Cropster::Response
       :varieties, :groups, :certificates, :alerts, :locations,
       :processings, :machines, :profiles, :lots
 
+    # Constructor
+    # @param data [Hash] the data to convert into a Cropster::Response subclass
     def initialize(data)
       @sources = []
       @certifications = []
       load_from_data(data)
     end
 
+    # Copies the data from the Hash into the object attributes
+    # @param data [Hash]
     def load_from_data(data)
       @id = data[:id]
       @type = data[:type]
@@ -19,14 +26,19 @@ module Cropster::Response
       load_links(data[:links])
     end
 
+    # Placeholder function to be overridden
     def load_attributes(attributes); end
 
+    # Loads any referential link for the object in question
+    # @param links [Hash]
     def load_links(links)
       return if links.nil?
       return if links[:self].nil?
       @link = links[:self]
     end
 
+    # Parses the relationships Hash
+    # @param relationships [Hash] the hash returned with the object attributes
     def load_relationships(relationships)
       relationships = Cropster::Response::Relationship.new(relationships).result
       @source_contacts = relationships[:source_contacts]
@@ -65,10 +77,17 @@ module Cropster::Response
       Time.at(date.to_i / 1000).utc
     end
 
+    # Converts the price Hash to a Cropster::Response::Price object
+    # @param data [Hash] the price data
+    # @param base_data [Hash] information about the currency
+    # @return Cropster::Response::Price
     def load_price(data, base_data)
       Cropster::Response::Price.new(data, base_data)
     end
 
+    # Converts the weight Hash to a Cropster::Response::Weight object
+    # @param attributes [Hash] the weight data
+    # @return Cropster::Response::Weight
     def load_weight(attributes)
       Cropster::Response::Weight.new(attributes)
     end
