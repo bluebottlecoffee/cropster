@@ -17,8 +17,8 @@ class Cropster::ProjectTest < Test::Unit::TestCase
 
   def register_fixtures
     url = fixture_url("projects/AA")
-    register_fixture(:project_success, :get, url, "project_success.json")
+    register_fixture(:project_success, :get, url, "get_project_success.json")
     url = fixture_url("projects?filter[projects][group]=CROR")
-    register_fixture(:projects_success, :get, url, "projects_success.json")
+    register_fixture(:projects_success, :get, url, "get_projects_success.json")
   end
 end

@@ -25,10 +25,10 @@ class Cropster::ProcessingTest < Test::Unit::TestCase
 
   def register_fixtures
     url = fixture_url("processings/AA")
-    register_fixture(:processing_success, :get, url, "processing_success.json")
+    register_fixture(:processing_success, :get, url, "get_processing_success.json")
 
     # url = fixture_url("processings][profile?filter[processings][group]=CROR&sort[processings][startDate]=desc")
     url = fixture_url("processings][profile?filter[processings][group]=CROR")
-    register_fixture(:processings_success, :get, url, "processings_success.json")
+    register_fixture(:processings_success, :get, url, "get_processings_success.json")
   end
 end

@@ -32,9 +32,9 @@ class Cropster::LotTest < Test::Unit::TestCase
 
   def register_fixtures
     url = fixture_url("lots/AA")
-    register_fixture(:lot_success, :get, url, "lot_success.json")
+    register_fixture(:lot_success, :get, url, "get_lot_success.json")
     url = fixture_url("lots?filter[lots][group]=CROR")
-    register_fixture(:lots_success, :get, url, "lots_success.json")
-    register_fixture(:lots_failure, :get, url, 'lots_failure.json')
+    register_fixture(:lots_success, :get, url, "get_lots_success.json")
+    register_fixture(:lots_failure, :get, url, 'get_lots_failure.json')
   end
 end

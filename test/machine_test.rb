@@ -17,8 +17,8 @@ class Cropster::MachineTest < Test::Unit::TestCase
 
   def register_fixtures
     url = fixture_url("machines?filter[machines][group]=CROR")
-    register_fixture(:machines_success, :get, url, "machines_success.json")
+    register_fixture(:machines_success, :get, url, "get_machines_success.json")
     url = fixture_url("machines/AA")
-    register_fixture(:machine_success, :get, url, "machine_success.json")
+    register_fixture(:machine_success, :get, url, "get_machine_success.json")
   end
 end

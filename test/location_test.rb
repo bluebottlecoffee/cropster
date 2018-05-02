@@ -17,8 +17,8 @@ class Cropster::LocationTest < Test::Unit::TestCase
 
   def register_fixtures
     url = fixture_url("locations/AA")
-    register_fixture(:location_success, :get, url, "location_success.json")
+    register_fixture(:location_success, :get, url, "get_location_success.json")
     url = fixture_url("locations?filter[locations][group]=CROR")
-    register_fixture(:locations_success, :get, url, "locations_success.json")
+    register_fixture(:locations_success, :get, url, "get_locations_success.json")
   end
 end

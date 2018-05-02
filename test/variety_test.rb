@@ -18,9 +18,9 @@ class Cropster::VarietyTest < Test::Unit::TestCase
 
   def register_fixtures
     url = fixture_url("varieties/YB")
-    register_fixture(:variety_success, :get, url, "variety_success.json")
+    register_fixture(:variety_success, :get, url, "get_variety_success.json")
 
     url = fixture_url("varieties?filter[varieties][group]=CROR")
-    register_fixture(:varieties_success, :get, url, "varieties_success.json")
+    register_fixture(:varieties_success, :get, url, "get_varieties_success.json")
   end
 end
