@@ -33,6 +33,12 @@ module Cropster
       process(response)
     end
 
+    def create(object_url, data)
+      response = post("/#{object_url}/", data)
+      handle_error(response)
+      process(response)
+    end
+
     # A method to be overridden
     def process(response); end
 
@@ -66,6 +72,10 @@ module Cropster
     # Perform the actual interaction with the Cropster API
     def get(url)
       @client.get(url)
+    end
+
+    def post(url, data)
+      @client.post(url, data)
     end
 
     def base_url

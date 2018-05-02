@@ -33,7 +33,7 @@ module Cropster
     # @param data [Hash] the data to POST
     # @return Typhoeus::Response
     def post(url, data)
-      Tyhpoeus::Request.post(base_url + url,
+      Typhoeus::Request.post(base_url + url,
                              body: data,
                              userpwd: authentication)
     end

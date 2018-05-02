@@ -20,6 +20,13 @@ module Cropster
       find_collection("lots", opts)
     end
 
+    def create_lot(data)
+      create("lots", data).first
+    end
+
+    # Create a new Lot on Cropster
+    # @params data [Hash 
+
     # Process the response from Cropster into appriate objects
     # @param response [Typhoeus::Response]
     def process(response)
