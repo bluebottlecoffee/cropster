@@ -21,9 +21,21 @@ module Cropster
       "#{host}#{@api_path}"
     end
 
-    # Perform the HTTP request
-    def request(url)
+    # Perform the HTTP GET request
+    # @param url [String] the url to GET
+    # @return [Typhoeus::Response]
+    def get(url)
       Typhoeus::Request.get(base_url + url, userpwd: authentication)
+    end
+
+    # Perform the HTTP POST request
+    # @param url [String] the url to POST data to
+    # @param data [Hash] the data to POST
+    # @return Typhoeus::Response
+    def post(url, data)
+      Tyhpoeus::Request.post(base_url + url,
+                             body: data,
+                             userpwd: authentication)
     end
 
     # Extract the data from the response

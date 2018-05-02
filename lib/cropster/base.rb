@@ -17,7 +17,7 @@ module Cropster
     # @param id [String] The ID for the requested object
     # @return `Cropster::Response::FormattedResponseItem` subclassed object
     def find_by_id(object_url, id)
-      response = get_response("/#{object_url}/#{id}")
+      response = get("/#{object_url}/#{id}")
       handle_error(response)
       process(response)
     end
@@ -28,7 +28,7 @@ module Cropster
     # @return [Array] An array of the
     # `Cropster::Response::FormattedResponseItem` subclass objects
     def find_collection(object_url, opts)
-      response = get_response("/#{object_url}" + url_filter(object_url, opts))
+      response = get("/#{object_url}" + url_filter(object_url, opts))
       handle_error(response)
       process(response)
     end
@@ -64,8 +64,8 @@ module Cropster
     end
 
     # Perform the actual interaction with the Cropster API
-    def get_response(url)
-      @client.request(url)
+    def get(url)
+      @client.get(url)
     end
 
     def base_url
