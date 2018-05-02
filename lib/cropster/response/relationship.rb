@@ -1,3 +1,6 @@
+##
+# Converts a Hash into a Cropster::Response::Relationship object
+#
 module Cropster::Response
   class Relationship
     attr_accessor :result

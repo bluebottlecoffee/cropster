@@ -1,16 +1,11 @@
+##
+# Converts a Hash object into a Cropster::Response::Location object
+#
 module Cropster::Response
   class Location < Cropster::Response::FormattedResponseItem
-    attr_accessor :id, :type, :name, :street, :zip, :city, :country
+    attr_accessor :name, :street, :zip, :city, :country
 
-    def initialize(data)
-      super(data)
-    end
-
-    def load_from_data(data)
-      super
-      @type = data[:type]
-    end
-
+    # @param attributes [Hash]
     def load_attributes(attributes)
       return if attributes.nil?
       @name = attributes[:name]

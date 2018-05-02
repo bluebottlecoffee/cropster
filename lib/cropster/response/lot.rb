@@ -1,3 +1,6 @@
+##
+# Converts a Hash into a Cropster::Response::Lot object
+#
 module Cropster::Response
   class Lot < Cropster::Response::FormattedResponseItem
     attr_accessor :id_tag, :name, :created_at, :consumed_at,
@@ -5,14 +8,8 @@ module Cropster::Response
                   :initial_weight, :tracking_number, :grade, :sales_number,
                   :notes, :processing_step, :purchase_order_number
 
-    def initialize(data)
-      super(data)
-    end
-
     def load_from_data(data)
       super
-      @type = data[:type]
-      load_relationships(data[:relationships])
     end
 
     def load_attributes(attributes)

@@ -1,11 +1,11 @@
+##
+# Converts a Hash into a Cropster::Response::Processing object that represents
+# a Roast instance
+#
 module Cropster::Response
   class Processing < Cropster::Response::FormattedResponseItem
-    attr_accessor :id, :worker, :started_at, :ended_at, :duration,
+    attr_accessor :worker, :started_at, :ended_at, :duration,
       :notes, :start_weight, :end_weight, :measures, :comments
-
-    def initialize(data)
-      super(data)
-    end
 
     def load_from_data(data)
       super
@@ -30,7 +30,6 @@ module Cropster::Response
     def load_comments(comments)
       @comments = comments
     end
-
 
     def total_green_weight_grams
       sources.sum { |s| s.weight.grams }

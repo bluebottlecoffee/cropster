@@ -1,18 +1,13 @@
+##
+# Converts a Hash object into a Cropster::Response::Contact
+#
 module Cropster::Response
   class Contact < Cropster::Response::FormattedResponseItem
-    attr_accessor :id, :type, :first_name, :last_name, :company_name,
+    attr_accessor :first_name, :last_name, :company_name,
       :name, :street, :city, :zip, :state, :country, :phone, :mobile, :fax,
       :email, :website
 
-    def intialize(data)
-      super(data)
-    end
-
-    def load_from_data(data)
-      super
-      @type = data[:type]
-    end
-
+    # @param attributes [Hash]
     def load_attributes(attributes)
       return if attributes.nil?
 
