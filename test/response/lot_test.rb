@@ -22,6 +22,7 @@ class Cropster::Response::LotTest < Test::Unit::TestCase
     assert_equal ["CROR"], item.groups
     assert_equal ["ORIJ"], item.sensorial_qcs
     assert_equal ["AA"], item.processings
+    assert_equal "https://c-sar.cropster.com/api/v2/lots/AA", item.link
   end
 
   def valid_response

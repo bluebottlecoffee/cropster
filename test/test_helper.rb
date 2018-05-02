@@ -29,7 +29,6 @@ rescue Bundler::BundlerError => e
   exit e.status_code
 end
 
-
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 

@@ -14,13 +14,13 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://guides.rubygems.org/specification-reference/ for more options
-  gem.name = "date_range_converter"
-  gem.homepage = "http://github.com/jordanbrock/date_range_converter"
+  gem.name = "Cropster"
+  gem.homepage = "http://github.com/bluebottlecoffee/cropster"
   gem.license = "MIT"
-  gem.summary = %Q{Converts datestrings into Ruby Range objects}
-  gem.description = %Q{Converts datestrings into Ruby Range objects}
-  gem.email = "jordan@brock.id.au"
-  gem.authors = ["Jordan Brock"]
+  gem.summary = %Q{Provides an interface to the Cropster API}
+  gem.description = %Q{Provides an interface to the Cropster API}
+  gem.email = ["caseyg@bluebottlecoffee.com", "jordan.brock@fivesenses.com.au"]
+  gem.authors       = ["Casey Gipson", "Jordan Brock"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
@@ -28,7 +28,7 @@ Jeweler::RubygemsDotOrgTasks.new
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
   test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
+  test.pattern = 'test/**/*_test.rb'
   test.verbose = true
 end
 

@@ -1,6 +1,6 @@
 module Cropster::Response
   class FormattedResponseItem
-    attr_accessor :id, :type
+    attr_accessor :id, :type, :link
     attr_accessor :source_contacts, :sensorial_qcs, :projects,
       :varieties, :groups, :certificates, :alerts, :locations,
       :processings, :machines, :profiles, :lots
@@ -15,9 +15,16 @@ module Cropster::Response
       @id = data[:id]
       load_attributes(data[:attributes])
       load_relationships(data[:relationships])
+      load_links(data[:links])
     end
 
     def load_attributes(attributes); end
+
+    def load_links(links)
+      return if links.nil?
+      return if links[:self].nil?
+      @link = links[:self]
+    end
 
     def load_relationships(relationships)
       relationships = Cropster::Response::Relationship.new(relationships).result
