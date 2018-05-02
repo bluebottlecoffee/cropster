@@ -13,6 +13,7 @@ module Cropster::Response
 
     def load_from_data(data)
       @id = data[:id]
+      @type = data[:type]
       load_attributes(data[:attributes])
       load_relationships(data[:relationships])
       load_links(data[:links])

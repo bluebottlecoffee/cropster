@@ -13,6 +13,7 @@ require 'cropster/location'
 require 'cropster/processing'
 require 'cropster/project'
 require 'cropster/variety'
+require 'cropster/source_contact'
 
 require 'cropster/response/response_handler'
 require 'cropster/response/formatted_response_item'
@@ -26,5 +27,6 @@ require 'cropster/response/processing'
 require 'cropster/response/project'
 require 'cropster/response/relationship'
 require 'cropster/response/variety'
+require 'cropster/response/source_contact'
 
 ServiceUnavailableError = Class.new(StandardError)

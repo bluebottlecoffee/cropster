@@ -22,7 +22,6 @@ module Cropster
     # Process the response from Cropster into appriate objects
     # @param response [Typhoeus::Response]
     def process(response)
-    def process(response)
       Cropster::Response::ResponseHandler.
         new("Variety", data_set(response)).compiled_data
     end

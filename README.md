@@ -17,54 +17,60 @@ Or install it yourself as:
 
 Setup Initializer
 
-    CropsterClient = Cropster::Client.new({
-                  :api_key => ENV['CROPSTER_API_KEY'],
-                  :api_secret => ENV['CROPSTER_API_SECRET'],
-                  :group_code => ENV['CROPSTER_GROUP_CODE']})
+    client = Cropster::Client.new({
+      api_key:    ENV['CROPSTER_API_KEY'],
+      api_secret: ENV['CROPSTER_API_SECRET'],
+      group_code: ENV['CROPSTER_GROUP_CODE']
+    })
 
 Optional keys for the client initialization include:
 
-    :test_mode (true | false)
+    test_mode: (true | false)
+    api_path: "api/v2"
 
 ## Usage
 
 ### Contacts
 
 #### List Contacts
-    Cropster::Contact.new(CropsterClient).contacts({})
+    Cropster::Contact.new(client).contacts({})
 
 #### Get a Contact
-    Cropster::Contact.new(CropsterClient).contact("ID")
+    Cropster::Contact.new(client).contact("ID")
 
 ### Locations
 #### List Locations
-    Cropster::Location.new(CropsterClient).locations({})
+    Cropster::Location.new(client).locations({})
 #### Get a Location
-    Cropster::Location.new(CropsterClient).location("ID")
+    Cropster::Location.new(client).location("ID")
 
 ### Lots
 #### Get a Lot
-    Cropster::Lot.new(CropsterClient).lot("ID")
+    Cropster::Lot.new(client).lot("ID")
 #### List Lots
-    Cropster::Lot.new(CropsterClient).lots
+    Cropster::Lot.new(client).lots
 
 ### Processing
 #### List Processings
-    Cropster::Processing.new(CropsterClient).processings({})
+    Cropster::Processing.new(client).processings({})
 #### Get a Processing (roast)
-    Cropster::Processing.new(CropsterClient).processing("ID")
+    Cropster::Processing.new(client).processing("ID")
 
 ### Projects
 #### List Projects
-    Cropster::Project.new(CropsterClient).projects({})
+    Cropster::Project.new(client).projects({})
 #### Get a Project
-    Cropster::Project.new(CropsterClient).project("ID")
+    Cropster::Project.new(client).project("ID")
+
+### Source Contacts
+#### Get a Source Contact
+    Cropster::SourceContact.new(client).source_contact("ID")
 
 ### Varieties
 #### List Varieties
-    Cropster::Variety.new(CropsterClient).varieties({})
+    Cropster::Variety.new(client).varieties({})
 #### Get a Variety
-    Cropster::Variety.new(CropsterClient).variety("ID")
+    Cropster::Variety.new(client).variety("ID")
 
 ## Contributing
 
