@@ -1,7 +1,13 @@
+##
+# An object to hold authentication data and to provide the transport mechanism
+# for interacting with the Cropster API
+#
 module Cropster
   class Client
     attr_reader :api_key, :api_secret, :group_code
 
+    # Constructor
+    # @param opts [Hash] the authentication information for Cropster
     def initialize(opts = {})
       @test_mode       = opts[:test_mode] ||= false
       @api_path        = opts[:api_path] ||= Cropster::API_PATH
@@ -10,20 +16,28 @@ module Cropster
       @group_code      = opts[:group_code] ||= ENV['CROPSTER_GROUP_CODE']
     end
 
+    # Helper method to build the URL for accessing Cropster
     def base_url
       "#{host}#{@api_path}"
     end
 
+    # Perform the HTTP request
     def request(url)
       Typhoeus::Request.get(base_url + url, userpwd: authentication)
     end
 
+    # Extract the data from the response
+    # @param response [Typoeus::Response]
     def data_set(response)
       JSON.parse(response.body)["data"]
     rescue
       {}
     end
 
+    # Builds the filter URL from the provided options
+    # @param filter [String] the object name to filter
+    # @param opts [Hash] options to filter the request
+    # @return [String]
     def uri_options(filter_type, opts)
       opts = opts.merge({ group: @group_code })
       URI.encode(opts.map{|k,v| "filter[#{filter_type}][#{k}]=#{v}"}.join("&"))
@@ -37,6 +51,5 @@ module Cropster
     def host
       @test_mode ?  Cropster::SERVER_TEST : Cropster::SERVER_PRODUCTION
     end
-
   end
 end
