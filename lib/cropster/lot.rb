@@ -41,6 +41,7 @@ module Cropster
     end
 
     # Process the response from Cropster into appriate objects
+    #
     # @param response [Typhoeus::Response]
     def process(response)
       Cropster::Response::ResponseHandler.

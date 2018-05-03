@@ -30,6 +30,17 @@ Optional keys for the client initialization include:
 
 ## Usage
 
+### Certificates
+#### List Certificates
+    Cropster::Certificate.new(client).certificates({})
+#### Get a Certificate
+    Cropster::Certificate.new(client).certificate("ID")
+#### Create a Certificate
+    Cropster::Certificate.new(client).create_certificat(certificate_data)
+#### Update a Certificate
+    Cropster::Certificate.new(client).
+      update_certificate("ID", certificate_data)
+
 ### Contacts
 #### List Contacts
     Cropster::Contact.new(client).contacts({})
@@ -39,7 +50,6 @@ Optional keys for the client initialization include:
 ### Groups
 #### List Groups
     Cropster::Group.new(client).groups({})
-
 #### Get a Group
     Cropster::Group.new(client).group("CROR")
 
@@ -54,6 +64,16 @@ Optional keys for the client initialization include:
     Cropster::Lot.new(client).lot("ID")
 #### List Lots
     Cropster::Lot.new(client).lots
+#### Create a Lot
+    Cropster::Lot.new(client).create_lot(lot_data)
+#### Update a Lot
+    Cropster::Lot.new(client).update_lot("ID", lot_data)
+
+### Machines
+#### Get a Machine
+    Cropster::Machine.new(client).machine("ID")
+#### List Machines
+    Cropster::Machine.new(client).machines
 
 ### Processing
 #### List Processings
@@ -83,6 +103,8 @@ Optional keys for the client initialization include:
    requests need.
 2. All "Get Multiple by ID's" only return a single record as currently
    described in the API documentation. Should return an Array of results.
+3. POST to "/locations" _doesn't_ require the trailing '/' that other POST
+   requests need
 
 ## Contributing
 
