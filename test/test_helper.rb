@@ -47,9 +47,10 @@ def load_fixture(fixture)
   WebMock::Fixtures::Manager.run([fixture])
 end
 
-def register_fixture(fixture, operation, url, file)
+def register_fixture(fixture, operation, url)
+  file = "test/fixtures/#{fixture.to_s}.json"
   WebMock::Fixtures::Manager.
-    register_fixture_file(fixture, operation, url, "test/fixtures/#{file}")
+    register_fixture_file(fixture, operation, url, file)
 end
 
 def fixture_url(url)

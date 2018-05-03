@@ -48,14 +48,14 @@ class Cropster::LotTest < Test::Unit::TestCase
 
   def register_fixtures
     url = fixture_url("lots/AA")
-    register_fixture(:get_lot_success, :get, url, "get_lot_success.json")
+    register_fixture(:get_lot_success, :get, url)
     url = fixture_url("lots?filter[lots][group]=CROR")
-    register_fixture(:get_lots_success, :get, url, "get_lots_success.json")
-    register_fixture(:get_lots_failure, :get, url, 'get_lots_failure.json')
+    register_fixture(:get_lots_success, :get, url)
+    register_fixture(:get_lots_failure, :get, url)
     url = fixture_url("lots/")
-    register_fixture(:post_lot_success, :post, url, "post_lot_success.json")
+    register_fixture(:post_lot_success, :post, url)
     url = fixture_url("lots/0GQ")
-    register_fixture(:patch_lot_success, :patch, url, "patch_lot_success.json")
+    register_fixture(:patch_lot_success, :patch, url)
   end
 
   def valid_patch_data

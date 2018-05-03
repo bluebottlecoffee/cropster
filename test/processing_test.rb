@@ -8,7 +8,7 @@ class Cropster::ProcessingTest < Test::Unit::TestCase
 
   def test_processings
     register_fixtures
-    load_fixture(:processings_success)
+    load_fixture(:get_processings_success)
     processings = Cropster::Processing.new(cropster_client).processings
     assert_equal 1, processings.length
     processing = processings.first
@@ -17,7 +17,7 @@ class Cropster::ProcessingTest < Test::Unit::TestCase
 
   def test_processing
     register_fixtures
-    load_fixture(:processing_success)
+    load_fixture(:get_processing_success)
     processing = Cropster::Processing.new(cropster_client).processing("AA")
     assert_equal("John Doe", processing.worker)
     assert_match(/processing notes/, processing.notes)
@@ -25,10 +25,10 @@ class Cropster::ProcessingTest < Test::Unit::TestCase
 
   def register_fixtures
     url = fixture_url("processings/AA")
-    register_fixture(:processing_success, :get, url, "get_processing_success.json")
+    register_fixture(:get_processing_success, :get, url)
 
     # url = fixture_url("processings][profile?filter[processings][group]=CROR&sort[processings][startDate]=desc")
     url = fixture_url("processings][profile?filter[processings][group]=CROR")
-    register_fixture(:processings_success, :get, url, "get_processings_success.json")
+    register_fixture(:get_processings_success, :get, url)
   end
 end
