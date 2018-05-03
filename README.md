@@ -105,6 +105,10 @@ Optional keys for the client initialization include:
    described in the API documentation. Should return an Array of results.
 3. POST to "/locations" _doesn't_ require the trailing '/' that other POST
    requests need
+4. GET "/processings" requires a bizarre filter string:
+   '][profile?filter[processings]foo". Not sure if this actually means
+   something, or someone cut and paste something into the code and didn't
+   realise. Doesn't work without it.
 
 ## Contributing
 
