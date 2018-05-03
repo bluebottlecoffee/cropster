@@ -72,6 +72,13 @@ Optional keys for the client initialization include:
 #### Get a Variety
     Cropster::Variety.new(client).variety("ID")
 
+## CROPSTER API BETA INCONSISTENCIES
+
+1. POST to "/varieties" _doesn't_ require the trailing '/' that other POST
+   requests need.
+2. All "Get Multiple by ID's" only return a single record as currently
+   described in the API documentation. Should return an Array of results.
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/cropster/fork )

@@ -7,6 +7,7 @@ require "cropster/string"
 require "cropster/version"
 require "cropster/client"
 require "cropster/contact"
+require "cropster/certificate"
 require 'cropster/constants'
 require 'cropster/lot'
 require 'cropster/location'
@@ -19,6 +20,7 @@ require 'cropster/source_contact'
 require 'cropster/response/response_handler'
 require 'cropster/response/formatted_response_item'
 require 'cropster/response/contact'
+require 'cropster/response/certificate'
 require 'cropster/response/location'
 require 'cropster/response/weight'
 require 'cropster/response/price'
