@@ -7,6 +7,7 @@ module Cropster
   class Lot < Cropster::Base
 
     # Find a single Lot
+    #
     # @param id [String] the id of the required Lot
     # @return [Cropster::Response::Lot]
     def lot(id)
@@ -14,18 +15,30 @@ module Cropster
     end
 
     # Find a collection of Lot objects
+    #
     # @param opts [Hash] options to filter the request
     # @return [Array] of Cropster::Response::Lot objects
     def lots(opts={})
       find_collection("lots", opts)
     end
 
+    # POSTs a new Lot to the API
+    #
+    # @param data [Hash] the new Lot
+    # @return [Cropster::Response::Lot]
     def create_lot(data)
       create("lots", data).first
     end
 
-    # Create a new Lot on Cropster
-    # @params data [Hash 
+    # Updates an existing lot, currently only supports updating 
+    # @name and @accepted attributes.
+    #
+    # @param id [String] the ID of the Lot to be updated
+    # @param data [Hash] containing the fields to be updated
+    # @return [Cropster::Response::Lot]
+    def update_lot(id, data)
+      update("lots", id, data).first
+    end
 
     # Process the response from Cropster into appriate objects
     # @param response [Typhoeus::Response]

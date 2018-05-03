@@ -13,6 +13,7 @@ module Cropster
     end
 
     # Finds a single object on the Cropster API
+    #
     # @param object_url [String] the REST url for the object (eg "lots")
     # @param id [String] The ID for the requested object
     # @return `Cropster::Response::FormattedResponseItem` subclassed object
@@ -23,6 +24,7 @@ module Cropster
     end
 
     # Finds a collection of API objects
+    #
     # @param object_url [String] the REST url for the object (eg "lots")
     # @param opts [Hash] options to be added to URL to filter the requests
     # @return [Array] An array of the
@@ -33,17 +35,35 @@ module Cropster
       process(response)
     end
 
+    # POSTs data to the API via Cropster::Client
+    #
+    # @param object_url [String] the REST url for the object (eg "lots")
+    # @param data [Hash] the data to be POSTed
+    # @return [Object] the Cropster::Response::FormattedResponseItem subclass
     def create(object_url, data)
       response = post("/#{object_url}/", data)
       handle_error(response)
       process(response)
     end
 
-    # A method to be overridden
+    # PATCHes data to the API via the Cropster::Client
+    #
+    # @param object_url [String] the REST url for the object (eg "lots")
+    # @param id [String] the ID of the object to be updated
+    # @param data [Hash] contains the updated data for the object
+    # @return [Object] the Cropster::Response::FormattedResponseItem subclass
+    def update(object_url, id, data)
+      response = patch("/#{object_url}/#{id}", data)
+      handle_error(response)
+      process(response)
+    end
+
+    # A method to be overridden to process the data returned via the API
     def process(response); end
 
     protected
     # Builds the filter URL from the provided options
+    #
     # @param filter [String] the object name to filter
     # @param opts [Hash] options to filter the request
     # @return [String]
@@ -76,6 +96,10 @@ module Cropster
 
     def post(url, data)
       @client.post(url, data)
+    end
+
+    def patch(url, data)
+      @client.patch(url, data)
     end
 
     def base_url

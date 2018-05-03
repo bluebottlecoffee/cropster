@@ -38,6 +38,14 @@ class Cropster::LotTest < Test::Unit::TestCase
     assert_match(/Yirgacheffe/, lot.name)
   end
 
+  def test_update_lot_success
+    register_fixtures
+    load_fixture(:patch_lot_success)
+    lot = Cropster::Lot.new(cropster_client).update_lot("0GQ", valid_patch_data)
+    assert_not_nil lot
+    assert_match(/Getting renamed/, lot.name)
+  end
+
   def register_fixtures
     url = fixture_url("lots/AA")
     register_fixture(:get_lot_success, :get, url, "get_lot_success.json")
@@ -46,6 +54,29 @@ class Cropster::LotTest < Test::Unit::TestCase
     register_fixture(:get_lots_failure, :get, url, 'get_lots_failure.json')
     url = fixture_url("lots/")
     register_fixture(:post_lot_success, :post, url, "post_lot_success.json")
+    url = fixture_url("lots/0GQ")
+    register_fixture(:patch_lot_success, :patch, url, "patch_lot_success.json")
+  end
+
+  def valid_patch_data
+    {
+      "data": {
+        "type": "lots",
+        "id": "0GQ",
+        "attributes": {
+          "name": "Getting renamed",
+          "accepted": "accepted"
+        },
+        "relationships": {
+          "variety": {
+            "data": {
+              "type": "varieties",
+              "id": "AA"
+            }
+          }
+        }
+      }
+    }
   end
 
   def valid_post_data

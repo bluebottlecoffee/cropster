@@ -22,13 +22,16 @@ module Cropster
     end
 
     # Perform the HTTP GET request
+    #
     # @param url [String] the url to GET
     # @return [Typhoeus::Response]
     def get(url)
-      Typhoeus::Request.get(base_url + url, userpwd: authentication)
+      Typhoeus::Request.get(base_url + url,
+                            userpwd: authentication)
     end
 
     # Perform the HTTP POST request
+    #
     # @param url [String] the url to POST data to
     # @param data [Hash] the data to POST
     # @return Typhoeus::Response
@@ -38,7 +41,19 @@ module Cropster
                              userpwd: authentication)
     end
 
+    # Perform the HTTP PATCH request
+    #
+    # @param url [String] the url to post data to
+    # @param data [Hash] the update data
+    # @return Typhoeus::Response
+    def patch(url, data)
+      Typhoeus::Request.patch(base_url + url,
+                              body: data,
+                              userpwd: authentication)
+    end
+
     # Extract the data from the response
+    #
     # @param response [Typoeus::Response]
     def data_set(response)
       JSON.parse(response.body)["data"]
@@ -47,6 +62,7 @@ module Cropster
     end
 
     # Builds the filter URL from the provided options
+    #
     # @param filter [String] the object name to filter
     # @param opts [Hash] options to filter the request
     # @return [String]
