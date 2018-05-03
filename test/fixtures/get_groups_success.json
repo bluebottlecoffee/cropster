@@ -1,0 +1,34 @@
+HTTP/1.1 200 OK
+server: Cowboy
+x-apiary-ratelimit-limit: 120
+x-apiary-ratelimit-remaining: 119
+content-type: application/vnd.api+json;charset=UTF-8
+access-control-allow-origin: *
+access-control-allow-methods: OPTIONS,GET,HEAD,POST,PUT,DELETE,TRACE,CONNECT
+access-control-max-age: 10
+x-apiary-transaction-id: 5ae1852c807d360a0002517c
+content-length: 3579
+date: Thu, 26 Apr 2018 07:52:12 GMT
+
+{
+  "data": [
+    {
+      "type": "groups",
+      "id": "CROR",
+      "attributes": {
+        "name": "Cropster Roasting"
+      },
+      "relationships": {
+        "groupMemberships": {
+          "links": {
+            "self": "https://c-sar.cropster.com/api/v2/groups/CROR/relationships/groupMemberships",
+            "related": "https://c-sar.cropster.com/api/v2/groups/CROR/groupMemberships"
+          }
+        }
+      },
+      "links": {
+        "self": "https://c-sar.cropster.com/api/v2/groups/CROR"
+      }
+    }
+  ]
+}

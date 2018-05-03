@@ -31,12 +31,17 @@ Optional keys for the client initialization include:
 ## Usage
 
 ### Contacts
-
 #### List Contacts
     Cropster::Contact.new(client).contacts({})
-
 #### Get a Contact
     Cropster::Contact.new(client).contact("ID")
+
+### Groups
+#### List Groups
+    Cropster::Group.new(client).groups({})
+
+#### Get a Group
+    Cropster::Group.new(client).group("CROR")
 
 ### Locations
 #### List Locations
