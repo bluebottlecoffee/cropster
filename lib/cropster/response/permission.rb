@@ -9,6 +9,5 @@ module Cropster::Response
       return if attributes.nil?
       @name = attributes[:name]
     end
-
   end
 end

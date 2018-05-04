@@ -77,6 +77,21 @@ module Cropster::Response
       Time.at(date.to_i / 1000).utc
     end
 
+    def load_time(time)
+      time.to_i / 1000
+    end
+
+    def load_values(values)
+      result = []
+      values.each do |value|
+        result << {
+          time: load_time(value[:time]),
+          value: value[:value]
+        }
+      end
+      result
+    end
+
     # Converts the price Hash to a Cropster::Response::Price object
     # @param data [Hash] the price data
     # @param base_data [Hash] information about the currency
