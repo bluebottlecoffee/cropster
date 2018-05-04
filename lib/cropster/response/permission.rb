@@ -2,7 +2,7 @@
 # Converts a Hash into a Cropster::Response::Permission object
 #
 module Cropster::Response
-  class User < Cropster::Response::FormattedResponseItem
+  class Permission < Cropster::Response::FormattedResponseItem
     attr_accessor :name
 
     def load_attributes(attributes)
