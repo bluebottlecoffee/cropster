@@ -1,7 +1,7 @@
 ##
 # Provides an interface to the Cropster API Variety system
 #
-# https://cropstercore.docs.apiary.io/#reference/production-&-lots/varieties
+# https://cropstercore.docs.apiary.io/#reference/production-&-varieties/varieties
 #
 module Cropster
   class Variety < Cropster::Base
@@ -18,6 +18,25 @@ module Cropster
     def varieties(opts={})
       find_collection("varieties", opts)
     end
+
+    # POSTs a new Variety to the API
+    #
+    # @param data [Hash] the new Variety
+    # @return [Cropster::Response::Variety]
+    def create_variety(data)
+      create("varieties", data).first
+    end
+
+    # Updates an existing variety, currently only supports updating 
+    # @name and @accepted attributes.
+    #
+    # @param id [String] the ID of the Variety to be updated
+    # @param data [Hash] containing the fields to be updated
+    # @return [Cropster::Response::Variety]
+    def update_variety(id, data)
+      update("varieties", id, data).first
+    end
+
 
     # Process the response from Cropster into appriate objects
     # @param response [Typhoeus::Response]

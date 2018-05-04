@@ -19,6 +19,23 @@ module Cropster
       find_collection("projects", opts)
     end
 
+    # POSTs a new Project to the API
+    #
+    # @param data [Hash] the new Project
+    # @return [Cropster::Response::Project]
+    def create_project(data)
+      create("projects", data).first
+    end
+
+    # Updates an existing lot, currently only supports updating 
+    # @name and @accepted attributes.
+    #
+    # @param id [String] the ID of the Project to be updated
+    # @param data [Hash] containing the fields to be updated
+    # @return [Cropster::Response::Project]
+    def update_project(id, data)
+      update("projects", id, data).first
+    end
     # Process the response from Cropster into appriate objects
     # @param response [Typhoeus::Response]
     def process(response)

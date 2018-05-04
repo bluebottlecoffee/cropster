@@ -19,6 +19,22 @@ module Cropster
       find_collection("contacts", opts)
     end
 
+    # POSTs a new Contact to Cropster
+    #
+    # @param data [Hash] the new Contact
+    # @return [Cropster::Response::Contact]
+    def create_contact(data)
+      create("contacts", data).first
+    end
+
+    # Updates an existing Contact
+    #
+    # @param id [String] the ID of the Contact to be updates
+    # @param data [Hash] the details of the updates
+    # @return [Cropster::Response::Contact]
+    def update_contact(id, data)
+      update("contacts", id, data).first
+
     # Process the response from Cropster into appriate objects
     # @param response [Typhoeus::Response]
     def process(response)

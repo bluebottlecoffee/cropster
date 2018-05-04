@@ -1,7 +1,7 @@
 ##
 # Provide an interface to the Cropster API SourceContact system
 #
-# https://cropstercore.docs.apiary.io/#reference/production-&-lots/sourcecontacts
+# https://cropstercore.docs.apiary.io/#reference/production-&-source_contacts/sourcecontacts
 #
 module Cropster
   class SourceContact < Cropster::Base
@@ -18,6 +18,24 @@ module Cropster
     # def source_contacts(opts={})
     #   find_collection("source_contacts", opts)
     # end
+
+    # POSTs a new SourceContact to the API
+    #
+    # @param data [Hash] the new SourceContact
+    # @return [Cropster::Response::SourceContact]
+    def create_source_contact(data)
+      create("source_contacts", data).first
+    end
+
+    # Updates an existing source_contact, currently only supports updating 
+    # @name and @accepted attributes.
+    #
+    # @param id [String] the ID of the SourceContact to be updated
+    # @param data [Hash] containing the fields to be updated
+    # @return [Cropster::Response::SourceContact]
+    def update_source_contact(id, data)
+      update("source_contacts", id, data).first
+    end
 
     # Process the response from Cropster into appriate objects
     # @param response [Typhoeus::Response]
