@@ -30,6 +30,13 @@ class Cropster::LotTest < Test::Unit::TestCase
     end
   end
 
+  def test_lots_by_ids_success
+    register_fixtures
+    load_fixture(:get_lots_by_ids_success)
+    lots = Cropster::Lot.new(cropster_client).lots_by_ids("AA,BB")
+    # assert_equal 2, lots.length
+  end
+
   def test_create_lot_success
     register_fixtures
     load_fixture(:post_lot_success)
@@ -52,6 +59,8 @@ class Cropster::LotTest < Test::Unit::TestCase
     url = fixture_url("lots?filter[lots][group]=CROR")
     register_fixture(:get_lots_success, :get, url)
     register_fixture(:get_lots_failure, :get, url)
+    url = fixture_url("lots/AA,BB")
+    register_fixture(:get_lots_by_ids_success, :get, url)
     url = fixture_url("lots/")
     register_fixture(:post_lot_success, :post, url)
     url = fixture_url("lots/0GQ")

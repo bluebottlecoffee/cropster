@@ -22,6 +22,14 @@ module Cropster
       find_collection("lots", opts)
     end
 
+    # Find multiple Lot objects by ID's
+    #
+    # @param ids [String] a comma separated string of ID's (eg "AA,BB")
+    # @return [Array] of Cropster::Response::Lot objects
+    def lots_by_ids(ids)
+      find_by_ids("lots", ids)
+    end
+
     # POSTs a new Lot to the API
     #
     # @param data [Hash] the new Lot

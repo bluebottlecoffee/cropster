@@ -34,6 +34,7 @@ module Cropster
     # @return [Cropster::Response::Contact]
     def update_contact(id, data)
       update("contacts", id, data).first
+    end
 
     # Process the response from Cropster into appriate objects
     # @param response [Typhoeus::Response]

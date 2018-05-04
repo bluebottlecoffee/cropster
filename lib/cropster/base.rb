@@ -23,6 +23,19 @@ module Cropster
       process(response)
     end
 
+    # Finds multiple objects on the Cropster API
+    #
+    # @param object_url [String] The REST url for the object
+    # @param ids [String] A comma separated string of ID's (eg "AA,BB")
+    #
+    # @return [Array] an array of the
+    # Cropster::Response::FormattedResponseItem subclass objects 
+    def find_by_ids(object_url, ids)
+      response = get("/#{object_url}/#{ids}")
+      handle_error(response)
+      process(response)
+    end
+
     # Finds a collection of API objects
     #
     # @param object_url [String] the REST url for the object (eg "lots")
