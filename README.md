@@ -97,19 +97,6 @@ Optional keys for the client initialization include:
 #### Get a Variety
     Cropster::Variety.new(client).variety("ID")
 
-## CROPSTER API BETA INCONSISTENCIES
-
-1. POST to "/varieties" _doesn't_ require the trailing '/' that other POST
-   requests need.
-2. All "Get Multiple by ID's" only return a single record as currently
-   described in the API documentation. Should return an Array of results.
-3. POST to "/locations" _doesn't_ require the trailing '/' that other POST
-   requests need
-4. GET "/processings" requires a bizarre filter string:
-   '][profile?filter[processings]foo". Not sure if this actually means
-   something, or someone cut and paste something into the code and didn't
-   realise. Doesn't work without it.
-
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/cropster/fork )
