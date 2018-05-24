@@ -28,7 +28,7 @@ class Cropster::ProcessingTest < Test::Unit::TestCase
     register_fixture(:get_processing_success, :get, url)
 
     # url = fixture_url("processings][profile?filter[processings][group]=CROR&sort[processings][startDate]=desc")
-    url = fixture_url("processings][profile?filter[processings][group]=CROR")
+    url = fixture_url("processings?filter[processings][group]=CROR")
     register_fixture(:get_processings_success, :get, url)
   end
 end

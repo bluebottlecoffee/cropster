@@ -19,12 +19,6 @@ module Cropster
       find_collection("processings", opts)
     end
 
-    # Overrides the URL filter from Cropster::Base
-    # Possibly a bug in the beta of the API
-    def url_filter(filter, opts={})
-      "][profile?#{uri_options(filter, opts)}"
-    end
-
     # Process the response from Cropster into appriate objects
     # @param response [Typhoeus::Response]
     def process(response)
