@@ -14,14 +14,14 @@ And then execute:
 Or install it yourself as:
 
     $ gem install cropster
-    
+
 Setup Initializer
 
     CropsterClient = Cropster::Client.new(
-                  :client_username => ENV['CROPSTER_USERNAME'], 
-                  :client_password => ENV['CROPSTER_PASSWORD'],
+                  :client_api_key => ENV['CROPSTER_API_KEY'],
+                  :client_api_secret => ENV['CROPSTER_API_SECRET'],
                   :group_code => ENV['CROPSTER_GROUP_CODE'])
-                  
+
 
 ## Usage
 
@@ -45,13 +45,13 @@ Setup Initializer
       "creationDate"=>1399306071000,
       "project"=>{"id"=>3293, "name"=>"Iced BC-ICED"},
       "weight"=>{"amount"=>17.086, "unit"=>"BAG69KG"}}]
-      
+
 ###Roasted Lots Request
-    
+
     CropsterClient.roasts
-    
+
 ###Roasted Lots Response
-    
+
     [{"id"=>669245,
       "idTag"=>"PR-10237",
       "name"=>"Costa Rica Vista el Valle Zapote",
@@ -66,7 +66,7 @@ Setup Initializer
       "creationDate"=>1401120213000,
       "project"=>nil,
       "weight"=>{"amount"=>48.0, "unit"=>"LBS"}}]
-      
+
 ###Example Optional Params
     CropsterClient.green_lots({page: 1, perPage: 200, locationId: 55789})
 *perPage max is 200

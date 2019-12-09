@@ -3,15 +3,15 @@ require 'cropster/response/response_handler'
 
 module Cropster
   class Client
-    attr_reader :client_username, :client_password, :group_code
+    attr_reader :client_api_key, :client_api_secret, :group_code
     ServiceUnavailableError = Class.new(StandardError)
 
     def initialize opts = {}
-      @test_mode       = opts[:test_mode].present?
-      @api_path        = opts[:api_path].presence || '/api/rest/v1'
-      @client_username = opts[:client_username]
-      @client_password = opts[:client_password]
-      @group_code      = opts[:group_code]
+      @test_mode         = opts[:test_mode].present?
+      @api_path          = opts[:api_path].presence || '/api/rest/v1'
+      @client_api_key    = opts[:client_api_key]
+      @client_api_secret = opts[:client_api_secret]
+      @group_code        = opts[:group_code]
     end
 
     def base_url(opts)
@@ -29,7 +29,7 @@ module Cropster
     end
 
     def request(url)
-      Typhoeus::Request.get(url, userpwd: username_password)
+      Typhoeus::Request.get(url, userpwd: basic_auth)
     end
 
     def roast_batches(opts={})
@@ -42,8 +42,8 @@ module Cropster
       URI.encode(opts.map{|k,v| "#{k}=#{v}"}.join("&"))
     end
 
-    def username_password
-      "#{@client_username}:#{@client_password}"
+    def basic_auth
+      "#{@client_api_key}:#{@client_api_secret}"
     end
   end
 end
