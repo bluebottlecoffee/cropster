@@ -1,4 +1,4 @@
-| ❗        | The End-of-Life and End-of-Support date for this product is July 23, 2021 (2021-07-23). Contributions made after this date will not be considered. |
+| ❗        | The End-of-Life and End-of-Support date for this product is July 23, 2021 (07-23-2021). Contributions made after this date will not be considered. |
 |---------------|:------------------------|
 
 # Cropster
