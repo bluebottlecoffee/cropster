@@ -1,3 +1,6 @@
+| ❗        | The End-of-Life and End-of-Support date for this product is July 23, 2021 (07-23-2021). Contributions made after this date will not be considered. |
+|---------------|:------------------------|
+
 # Cropster
 Cropster ruby gem. Make API calls to cropster to pull green and roasted coffee data.
 
